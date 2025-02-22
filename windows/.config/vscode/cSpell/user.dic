@@ -6,7 +6,10 @@ dotenv
 Furukawa
 gibo
 gitworks
-gpgsign
+
 helperselector
+
+
 mergetool
-signingkey
+openpgp
+
