@@ -16,12 +16,15 @@
 # Ensure the GNUPGHOME environment variable is set
 $env:GNUPGHOME = "${env:APPDATA}\gnupg"
 
-# Create the gnupg directory in AppData if it doesn't exist
-New-Item -ItemType Directory -Path "${env:APPDATA}\gnupg" -Force
+## Create the GNUPGHOME directory if it doesn't exist
+New-Item -ItemType Directory -Path $env:GNUPGHOME -Force
 
-# Create symbolic links for configuration files
-New-Item -ItemType SymbolicLink -Path "${env:APPDATA}\gnupg\gpg.conf" -Target "$env:USERPROFILE\.config\gnupg\gpg.conf"
-New-Item -ItemType SymbolicLink -Path "${env:APPDATA}\gnupg\gpg-agent.conf" -Target "$env:USERPROFILE\.config\gnupg\gpg-agent.conf"
-New-Item -ItemType SymbolicLink -Path "${env:APPDATA}\gnupg\dirmngr.conf" -Target "$env:USERPROFILE\.config\gnupg\dirmngr.conf"
 
+# Create symbolic links for configuration files within GNUPGHOME
+New-Item -ItemType SymbolicLink -Path "$env:GNUPGHOME\gpg.conf" -Target "${env:XDG_CONFIG_HOME}\gnupg\gpg.conf"
+New-Item -ItemType SymbolicLink -Path "$env:GNUPGHOME\gpg-agent.conf" -Target "${env:XDG_CONFIG_HOME}\gnupg\gpg-agent.conf"
+New-Item -ItemType SymbolicLink -Path "$env:GNUPGHOME\dirmngr.conf" -Target "${env:XDG_CONFIG_HOME}\gnupg\dirmngr.conf"
+
+
+# Restart the gpg-agent to apply the new configuration
 gpgconf --kill gpg-agent
