@@ -122,7 +122,6 @@ carapace _carapace | Out-String | Invoke-Expression
 # BuildTools Path
 
 # pnpm monorepo
-$env:path += ";apps\node_modules\.bin"
 
 # setup ocaml
 # (& opam env) -split '\r?\n' | ForEach-Object { Invoke-Expression $_ }

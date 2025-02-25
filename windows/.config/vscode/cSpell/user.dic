@@ -1,6 +1,7 @@
 # @(#) : cSpell user dictionary
 Atsushi
 atsushifx
+commitlint
 difftool
 dotenv
 Furukawa
@@ -8,5 +9,7 @@ gibo
 gitworks
 gpg
 helperselector
+lefthook
 mergetool
 openpgp
+winget
