@@ -93,7 +93,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 
 ## key binding
-. ($LIBSDIR + "keyconfig.inc.ps1" )
+. ($LIBSDIR + "keyConfig.inc.ps1" )
 
 ### Modules
 

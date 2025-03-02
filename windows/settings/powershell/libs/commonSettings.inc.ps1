@@ -15,7 +15,7 @@
 	@Version	1.0.1
 
 	script common settings & common use functions
-	set default constants abouot common Libraries directory, scripts directory, ...
+	set default constants about common Libraries directory, scripts directory, ...
 
 
 THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
@@ -33,9 +33,9 @@ Set-StrictMode -version latest
 
 	.DESCRIPTION
 	set common constants variable for powershell script
-	- THISCMD: script namr
-	- LIBSDIR: common function libray directory
-	- SCRIPTSDIR: common scripts direcyory
+	- THISCMD: script name
+	- LIBSDIR: common function library directory
+	- SCRIPTSDIR: common scripts directory
 	- WORKINGDIR: script execution directory
 
 	.NOTES
@@ -43,7 +43,7 @@ Set-StrictMode -version latest
 
 function setupScriptCommonConstants() {
 	$baseDir = (Split-Path -Path $PROFILE)
-	set-Variable -Scope Global -Option ReadOnly -Name PSCOMMAND -Value (Split-Path -Leaf $MyInvocation.PSCommandPath) -Description "executes command"
+	set-Variable -Scope Global -Option ReadOnly -Name THISCMD -Value (Split-Path -Leaf $MyInvocation.PSCommandPath) -Description "executes command"
 	Set-Variable -Scope Global -Option ReadOnly -Name LIBSDIR -Value $baseDir'/libs/' -Description 'common libs directory'
 	Set-Variable -Scope Global -Option ReadOnly -Name SCRIPTSDIR -Value $baseDir'/scripts/' -Description 'Common scripts directory'
 }
@@ -53,7 +53,7 @@ function setupScriptCommonConstants() {
 	check user role class
 
 	.DESCRIPTION
-	check script works by windowsbuiltinrole: User/PowerUser/Administrator
+	check script works by WindowsBuiltinRole: User/PowerUser/Administrator
 	method:isAdmin checks user works as administrator
 
 	.NOTES
