@@ -41,9 +41,8 @@ Set-StrictMode -version latest
 	.NOTES
 #>
 
-function setupScriptCommonConstants() {
+function Init_ScriptEnvironments() {
 	$baseDir = (Split-Path -Path $PROFILE)
-	set-Variable -Scope Global -Option ReadOnly -Name THISCMD -Value (Split-Path -Leaf $MyInvocation.PSCommandPath) -Description "executes command"
 	Set-Variable -Scope Global -Option ReadOnly -Name LIBSDIR -Value $baseDir'/libs/' -Description 'common libs directory'
 	Set-Variable -Scope Global -Option ReadOnly -Name SCRIPTSDIR -Value $baseDir'/scripts/' -Description 'Common scripts directory'
 }
@@ -88,3 +87,6 @@ class aglaUserRole {
 		return [aglaUserRole]::hasRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 	}
 }
+
+## exec function
+Init_ScriptEnvironments
