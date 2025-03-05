@@ -26,7 +26,6 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 ## Script Setup
 Set-StrictMode -version latest
 . $PSScriptRoot'/libs/commonSettings.inc.ps1'
-setupScriptCommonConstants
 
 ### Libraries
 . ($LIBSDIR + "cliFunctions.inc.ps1")  # for readline function
@@ -93,7 +92,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 
 ## key binding
-. ($LIBSDIR + "keyconfig.inc.ps1" )
+. ($LIBSDIR + "keyConfig.inc.ps1" )
 
 ### Modules
 
@@ -102,7 +101,7 @@ Invoke-Expression (&scoop-search-multisource -hook)
 
 ## tab completion
 Import-Module -Name CompletionPredictor
-Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { . $_.FullName }
+Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { echo $_.BaseName && . $_.FullName }
 
 
 ## Other tools
@@ -122,7 +121,6 @@ carapace _carapace | Out-String | Invoke-Expression
 # BuildTools Path
 
 # pnpm monorepo
-$env:path += ";apps\node_modules\.bin"
 
 # setup ocaml
 # (& opam env) -split '\r?\n' | ForEach-Object { Invoke-Expression $_ }

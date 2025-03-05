@@ -1,12 +1,21 @@
-# @(#) : cSpell user dictionary
+# @(#) : dictionary for user using words: user name, tools, directories, etc.
+agla
 Atsushi
 atsushifx
+commitlint
 difftool
 dotenv
 Furukawa
 gibo
 gitworks
-gpgsign
+gpg
 helperselector
+lefthook
+LIBSDIR
 mergetool
-signingkey
+openpgp
+SCRIPTSDIR
+secretlint
+THISCMD
+winget
+WORKINGDIR

@@ -34,7 +34,7 @@
 [user]
 	name = Furukawa Atsushi
 	email = atsushifx@gmail.com
-	signingkey = CF658DD4B12C3FE5
+	signingkey = atsushifx@gmail.com
 
 [pull]
 	ff = only
@@ -54,7 +54,7 @@
 [fetch]
 
 [gpg]
-	program = C:/app/develop/utils/gnupg/bin/gpg.exe
+	program = "C:/app/develop/utils/gnupg/bin/gpg.exe"
 
 [credential]
 	helper = store --file ~/.local/share/git/.git-credentials
