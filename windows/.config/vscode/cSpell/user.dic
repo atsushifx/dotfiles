@@ -1,10 +1,12 @@
-# @(#) : dictionary for user using words: user name, tools, directories, etc.
+# dictionary for user common  words:
 agla
 Atsushi
 atsushifx
 commitlint
 difftool
 dotenv
+fastly
+Fastly
 Furukawa
 gibo
 gitworks
@@ -13,9 +15,8 @@ helperselector
 lefthook
 LIBSDIR
 mergetool
+nameserver
 openpgp
-SCRIPTSDIR
 secretlint
-THISCMD
 winget
-WORKINGDIR
+

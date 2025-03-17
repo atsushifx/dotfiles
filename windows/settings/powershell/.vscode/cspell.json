@@ -1,0 +1,20 @@
+// @(#) :  cspell config for user centric settings
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "caseSensitive": true,
+  "dictionaryDefinitions": [
+	{
+		"name": "powershell-dic",
+		"description": "powershell script's dictionnary",
+		"path": "./cSpell/dicts/powershell.dic",
+		"addWords": true,
+		"scope": "workspace"
+	}
+  ],
+  "dictionaries": [
+  	"user-dic",
+  	"powershell-dic"
+  ]
+}

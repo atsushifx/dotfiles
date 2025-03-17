@@ -6,21 +6,15 @@
 	"caseSensitive": true,
 	"dictionaryDefinitions": [
 		{
-			"name": "user-dic",
-			"description": "dictionary words for user settings",
-			"path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/user.dic",
+			"name": "config-dic",
+			"description": " dictionary for .config specfic words",
+			"path": "./cspell/dicts/config.dic",
 			"addWords": true,
-			"scope": "user"
+			"scope": "workspace"
 		}
 	],
 	"dictionaries": [
-		"en-us",
-		"software-terms",
-		"public-licenses",
-		"shellscript",
-		"vim",
 		"user-dic",
-		"project-dic"
-	],
-	"useGitignore": true
+		"config-dic"
+	]
 }

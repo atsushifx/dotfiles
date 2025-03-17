@@ -101,7 +101,7 @@ Invoke-Expression (&scoop-search-multisource -hook)
 
 ## tab completion
 Import-Module -Name CompletionPredictor
-Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { echo $_.BaseName && . $_.FullName }
+Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { . $_.FullName }
 
 
 ## Other tools
