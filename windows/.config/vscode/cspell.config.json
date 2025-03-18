@@ -8,16 +8,16 @@
 		{
 			"name": "user-dic",
 			"description": "dictionary words for user settings",
-			"path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/user.dic",
+			"path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/user.dic",
 			"addWords": true,
 			"scope": "user"
 		},
 		{
-			"name": "project-dic",
-			"description": "user dictionary for this project",
-			"path": "./cspell/dicts/project.dic",
+			"name": "textlint-dic",
+			"description": "Dictionary: textlint words for plugin name, ...",
+			"path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/textlint.dic",
 			"addWords": true,
-			"scope": "workspace"
+			"scope": "user"
 		}
 	],
 	"dictionaries": [
@@ -27,6 +27,7 @@
 		"shellscript",
 		"vim",
 		"user-dic",
+		"textlint-dic",
 		"project-dic"
 	],
 	"useGitignore": true

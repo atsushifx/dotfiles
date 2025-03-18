@@ -1,0 +1,20 @@
+// @(#) :  cspell config for user centric settings
+{
+	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
+	"version": "0.2",
+	"language": "en",
+	"caseSensitive": true,
+	"dictionaryDefinitions": [
+		{
+			"name": "config-dic",
+			"description": " dictionary for .config specfic words",
+			"path": "./cspell/dicts/config.dic",
+			"addWords": true,
+			"scope": "workspace"
+		}
+	],
+	"dictionaries": [
+		"user-dic",
+		"config-dic"
+	]
+}
