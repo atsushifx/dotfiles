@@ -99,19 +99,21 @@ Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 ## scoop
 Invoke-Expression (&scoop-search-multisource -hook)
 
+# carapace completion tool for powershell
+$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+# carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
+
 ## tab completion
 Import-Module -Name CompletionPredictor
+# Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { write-output $_.BaseName && . $_.FullName }
 Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { . $_.FullName }
-
 
 ## Other tools
 $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 
-# carapace completion tool for powershell
-# $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
+
 
 # Wakatime setup
 # use wakatime for windows
