@@ -24,19 +24,13 @@ insert_final_newline = true
 charset = utf-8
 
 # indent style
-indent_size = tab
-indent_style = tab
-tab_width=4
+indent_style = space
+indent_size = 4
+tab_width = 4
 
 # ext type settings
 
 ### General Files
-
-# script executable
-[**.]
-indent_style = space
-indent_size = 2
-tab_width = 2
 
 # shell script
 [**.{sh,bash,zsh}]
@@ -44,19 +38,20 @@ indent_style = space
 indent_size = 2
 tab_width = 2
 
-### Languages
+### Programming Languages
 
 
-### Settings
+### Settings Files
 # ini files
 [**.ini]
 tab_width = 4
 indent_style = tab
 
 # json, yml
-[**.{json, yml}]
-tab_width = 4
+[**.{json,yaml,yml}]
 indent_style = tab
+indent_size = tab
+tab_width = 4
 
 # rc files
 [**rc]
