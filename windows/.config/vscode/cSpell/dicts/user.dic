@@ -2,6 +2,7 @@
 agla
 Atsushi
 atsushifx
+chgrp
 commitlint
 dic
 difftool
@@ -24,10 +25,14 @@ linux
 mergetool
 nameserver
 openpgp
+permisson
 rafactor
 readablity
 secretlint
+setgid
 techblog
+THISCMD
 winget
+WORKINGDIR
 XDG
 Zenn
