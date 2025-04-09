@@ -16,5 +16,3 @@
 
 vscode=/mnt/c/app/develop/ide/VSCode
 "$vscode/bin/code" --remote wsl+$(hostname) $*
-# "$vscode/bin/code"  $*
-
