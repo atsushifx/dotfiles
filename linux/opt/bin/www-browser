@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#
+browser=$(wslpath "c:/Program Files/Google/Chrome/Application/chrome.exe")
+"${browser}" "$@"
