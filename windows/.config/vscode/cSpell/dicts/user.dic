@@ -8,6 +8,7 @@ dic
 difftool
 dotenv
 dprint
+esbuild
 fastly
 Fastly
 Furukawa
@@ -26,12 +27,14 @@ mergetool
 nameserver
 openpgp
 permisson
+pnpx
 rafactor
 readablity
 secretlint
 setgid
 techblog
 THISCMD
+tsparser
 winget
 WORKINGDIR
 XDG
