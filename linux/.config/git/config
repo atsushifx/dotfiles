@@ -4,7 +4,7 @@
 #
 # @version 1.0.2
 # @author  Furukawa, Atsushi <atsushifx@aglabo.com>
-# @date    2023-04-17
+# @since   2023-04-17
 # @license MIT
 #
 # @desc<<
@@ -35,7 +35,10 @@
 [user]
     name = Furukawa Atsushi
     email = atsushifx@gmail.com
-    signkey = 005D8871DD059FF3
+    signkey = B4ABDC1DC7041EB6
+
+[gpg]
+	program = /usr/bin/gpg
 
 [pull]
 	ff = only

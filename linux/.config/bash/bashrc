@@ -19,9 +19,7 @@ BASHSCRIPTS_DIR="${BASHRC_DIR}/scripts"
 
 echo "Exec: .config/bash/bashrc"
 
-#
-# prompt : set prompt for bash
-#
+### prompt : set prompt for bash
 _set_prompt() {
   local _colorprompt
 
@@ -40,35 +38,20 @@ _set_prompt() {
 }
 _set_prompt
 
-## alias
+### Alias
 if [[ -f "${XDG_CONFIG_HOME}/aliases" ]]; then
   . "${XDG_CONFIG_HOME}/aliases"
 fi
 
-## key config
+### key config
 
-## bash completion
+### bash completion
+
 #   carapace completion
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
-source <(carapace _carapace)
-
-#   completion from brew
-_cmpl_d="${HOMEBREW_PREFIX}/etc/bash_completion.d"
-if [[ -e "${_cmpl_d}" ]]; then
-  for f in ${_cmpl_d}/*; do
-    . "${f}"
-  done
-fi
-
-###   compltion for local bashrc
-# zoxide
-eval "$(zoxide init bash)"
-
-
-# carapace
-# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 # source <(carapace _carapace)
 
+###   compltion for local bashrc
 # compleion scripts
 _cmpl_d="${BASHRC_DIR}/completion.d"
 if [[ -e "${_cmpl_d}" ]]; then
@@ -76,14 +59,29 @@ if [[ -e "${_cmpl_d}" ]]; then
     . "${f}"
   done
 fi
-## wakatime-count
+
+# carapace
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# source <(carapace _carapace)
+
+# zoxide setup
+# eval "$(zoxide init bash --hook prompt )"
+
+### setup GnuPG
+# export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
+# export GPG_TTY=$( tty )
+GPGDIR=$(wslpath 'C:/app/develop/utils/GnuPG')
+GPG_AGENT="${GPGDIR}/bin/gpg-connect-agent.exe"
+
+# ソケット転送
+# socat UNIX-LISTEN:$GNUPGHOME/S.gpg-agent,fork EXEC:"${GPG_AGENT} /bye",nofork
+
+### wakatime-count
 _watatime_script="${BASHSCRIPTS_DIR}/bash_wakatime.sh"
 if [[ -f "${_watatime_script}" ]]; then
   source "${_watatime_script}"
 fi
 
-## zoxide setup
-# eval "$(zoxide init bash --hook prompt )"
 
-## from WSL goto ~/temp
-[[ i$(pwd) =~ /mnt\/c/ ]] && cd ~/temp || return 1
+### from WSL goto ~/temp
+[[ $(pwd) =~ /mnt\/c/ ]] && cd ~/temp 

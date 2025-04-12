@@ -57,11 +57,22 @@ run_script() {
   local label="$2"
   local use_sudo=false
 
+
+  # 🔻 オプション処理を追加（--sudo以外はargsへ）
   shift 2
+  local args=()
+  # Global オプション引き継ぎ
+  [[ "$FLAG_FORCE" == true ]] && args+=("--force")
+  [[ "$FLAG_VERBOSE" == true ]] && args+=("--verbose")
+
+  # 引数解析
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --sudo)
         use_sudo=true
+        ;;
+      *)
+        args+=("$1")   # ← ここで--systemとかをargsに追加
         ;;
     esac
     shift
@@ -69,12 +80,8 @@ run_script() {
 
   echo "▶️  Running: $label"
 
-  local args=()
-  [[ "$FLAG_FORCE" == true ]] && args+=("--force")
-  [[ "$FLAG_VERBOSE" == true ]] && args+=("--verbose")
-
   if [[ "$use_sudo" == true ]]; then
-    if ! sudo bash -c ". \"$script\" ${args[*]}"; then
+    if ! sudo --preserve-env=HOME,SCRIPT_DIR bash -c ". \"$script\" ${args[*]}"; then
       echo "❌ Failed at: $label (sudo)" >&2
       exit 1
     fi
@@ -95,7 +102,7 @@ main() {
   run_script "$SCRIPT_DIR/create-user-links.sh" "Create user config links"
   run_script "$SCRIPT_DIR/create-opt-links.sh" "Create /opt links" --sudo
   run_script "$SCRIPT_DIR/fix-opt-permisson.sh" "Fix permissions for /opt"
-  run_script "$SCRIPT_DIR/append-dotfiles-profile.sh" "Append dotfiles profile"
+  run_script "$SCRIPT_DIR/append-dotfiles-profile.sh" "Append dotfiles profile" --sudo --system
 
   echo "✅ Dotfiles user setup completed!"
 }
