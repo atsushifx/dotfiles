@@ -10,6 +10,7 @@ dic
 difftool
 dotenv
 dprint
+esbuild
 Elpha
 errorlevel
 eslintcache
