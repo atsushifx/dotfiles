@@ -33,18 +33,18 @@ Set-StrictMode -version latest
 
 	.DESCRIPTION
 	set common constants variable for powershell script
-	- THISCMD: script name
-	- LIBSDIR: common function library directory
-	- SCRIPTSDIR: common scripts directory
-	- WORKINGDIR: script execution directory
+	- agBaseDir: base dir (Documents/powershell)
+	- agLIBSDIR: common function library directory
+	- agSCRIPTSDIR: common scripts directory
+
 
 	.NOTES
 #>
 
 function Init_ScriptEnvironments() {
-	$baseDir = (Split-Path -Path $PROFILE)
-	Set-Variable -Scope Global -Option ReadOnly -Name LIBSDIR -Value $baseDir'/libs/' -Description 'common libs directory'
-	Set-Variable -Scope Global -Option ReadOnly -Name SCRIPTSDIR -Value $baseDir'/scripts/' -Description 'Common scripts directory'
+	Set-Variable -Scope Global -Option ReadOnly -Name agBaseDir -Value (Split-Path -Path $PROFILE)
+	Set-Variable -Scope Global -Option ReadOnly -Name agLIBSDIR -Value $agBaseDir'/libs/' -Description 'common libs directory'
+	Set-Variable -Scope Global -Option ReadOnly -Name agSCRIPTSDIR -Value $agBaseDir'/scripts/' -Description 'Common scripts directory'
 }
 
 <#
