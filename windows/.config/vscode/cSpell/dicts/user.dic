@@ -1,5 +1,6 @@
 # dictionary for user common  words:
 agla
+aglabo
 Atsushi
 atsushifx
 chgrp
@@ -9,9 +10,10 @@ dic
 difftool
 dotenv
 dprint
+Elpha
+errorlevel
 eslintcache
 fastly
-Fastly
 frontmatter
 Furukawa
 gibo
@@ -23,6 +25,7 @@ helperselector
 hoge
 iarna
 japanese
+kobeni
 lefthook
 LIBSDIR
 linux
@@ -30,20 +33,24 @@ mergetool
 nameserver
 neotraverse
 nuxt
-Nuxt
+oniisama
 openpgp
 permisson
 pids
+pwsh
 rafactor
 readablity
 secretlint
 setgid
+setlocal
 sudachi
 techblog
 THISCMD
 tsparser
+tsumugi
 vitepress
 vitest
+volta
 winget
 WORKINGDIR
 XDG
