@@ -28,9 +28,10 @@ Set-StrictMode -version latest
 . $PSScriptRoot'/libs/commonSettings.inc.ps1'
 
 ### Libraries
-. ($LIBSDIR + "cliFunctions.inc.ps1")  # for readline function
+. ($agLIBSDIR + "cliFunctions.inc.ps1")  # for readline function
 
 $private:baseDir = Split-Path -path $profile
+$env:PATH += ":" + $agSCRIPTSDIR
 
 ### functions
 ## prompt
@@ -92,7 +93,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 
 ## key binding
-. ($LIBSDIR + "keyConfig.inc.ps1" )
+. ($agLIBSDIR + "keyConfig.inc.ps1" )
 
 ### Modules
 
@@ -117,7 +118,7 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 
 # Wakatime setup
 # use wakatime for windows
-. "$SCRIPTSDIR/pwsh-wakatime.ps1"
+. "$agSCRIPTSDIR/pwsh-wakatime.ps1"
 
 
 # BuildTools Path
