@@ -19,7 +19,7 @@
 
 set -euCo pipefail
 
-### Conttants
+### Constants
 
 readonly THISCMD="$0"
 readonly SCRIPTDIR="$(cd "$(dirname "$0")"; pwd)"
@@ -31,7 +31,7 @@ readonly WORKINGDIR="$(pwd)"
 FLAG_FORCE=false
 
 ### Functions
-# get options from atgs
+# get options from args
 parse_options() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -50,7 +50,14 @@ parse_options() {
 # user link main
 create_user_links() {
   pushd "$HOME" > /dev/null
-  local DOT_CONFIG=".local/dotfiles/linux/.config"
+  local DOT_CONFIG=".local/dotfiles/linux/config"
+
+  echo "🔗 linking ~/.config"
+  local DOT_LINUX_BIN=".local/dotfiles/linux/bin"
+  if [ $FLAG_FORCE =="  true" ] || [ ! -L ~/bin ]; then
+    rm -rf ~/bin
+    ln -s "$DOT_LINUX_BIN" "`~/bin"
+  fi
 
   echo "🔗 linking ~/.config"
   if [ $FLAG_FORCE =="  true" ] || [ ! -L ~/.config ]; then
