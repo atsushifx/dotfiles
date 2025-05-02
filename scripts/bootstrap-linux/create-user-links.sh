@@ -52,11 +52,11 @@ create_user_links() {
   pushd "$HOME" > /dev/null
   local DOT_CONFIG=".local/dotfiles/linux/config"
 
-  echo "🔗 linking ~/.config"
+  echo "🔗 linking ~/bin"
   local DOT_LINUX_BIN=".local/dotfiles/linux/bin"
   if [ $FLAG_FORCE =="  true" ] || [ ! -L ~/bin ]; then
     rm -rf ~/bin
-    ln -s "$DOT_LINUX_BIN" "`~/bin"
+    ln -s "$DOT_LINUX_BIN" "~/bin"
   fi
 
   echo "🔗 linking ~/.config"
