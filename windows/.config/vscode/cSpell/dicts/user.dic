@@ -13,6 +13,8 @@ difftool
 dotenv
 dprint
 Elpha
+env
+Env
 errorlevel
 esbuild
 eslintcache
@@ -48,9 +50,11 @@ readablity
 roleplay
 SCRIPTSDIR
 secretlint
+Senpai
 setgid
 setlocal
 sudachi
+supplypike
 tasksel
 techblog
 THISCMD
