@@ -1,13 +1,15 @@
+# src: ./lefthook.yml
 ## @(#) : lefthook config
 #
-# @version 1.0.0
-# @author  Furukawa, Atsushi <atsushifx@gmail.com>
-# @date    2024-02-05
-# @license MIT
+# @version  1.0.0
+# @date     2025-05-14
+# @author   atsushifx <https://github.com/atsushifx>
+# @license  MIT
 #
-# @desc<<
+# @description<<
 #
-# git hook configuration by lefthook
+# Git hook configuration powered by Lefthook.
+# Ensures commit hygiene with secret scanning and commit message linting.
 #
 #<<
 
@@ -15,15 +17,19 @@ pre-commit:
   parallel: true
   commands:
     gitleaks:
-      run: gitleaks protect --staged
+      run: gitleaks protect --config ./configs/gitleaks.toml --staged
 
     secretlint:
-      glob: '**/*'
-      run: secretlint --maskSecrets --secretlintignore .gitignore "{staged_files}"
+      glob: "**/*"
+      run: >
+        secretlint
+        --secretlintrc ./configs/secretlint.config.yaml
+        --secretlintignore .gitignore
+        --maskSecrets
+        "{staged_files}"
 
-# check commit message style
 commit-msg:
   parallel: true
   commands:
     commitlint:
-      run: pnpx commitlint -e
+      run: commitlint --config ./configs/commitlint.config.ts --edit
