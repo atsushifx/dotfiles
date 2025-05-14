@@ -15,14 +15,12 @@
 #
 #
 
-
-
 # top-most EditorConfig file
 # root = true
 
 # Microsoft powershell
 # shell script
 [**.{ps1,psm1,psd1}]
-indent_style = tab
-indent_size = tab
+indent_style = space
+indent_size = 2
 tab_width = 2
