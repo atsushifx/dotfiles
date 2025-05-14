@@ -70,7 +70,7 @@
 	required = true
 
 [ghq]
-	root = ~/workspaces/gitworks
+	root = ~/workspaces/repos
 	root = ~/workspaces/sandbox
 	root = ~/workspaces/education
 	root = ~/workspaces/develop

@@ -98,7 +98,7 @@ main() {
   parse_args "$@"
 
   echo "🛠  Starting dotfiles user setup..."
-
+  run_script "$SCRIPT_DIR/create-working-dir.sh" "Create working directory"
   run_script "$SCRIPT_DIR/create-user-links.sh" "Create user config links"
   run_script "$SCRIPT_DIR/create-opt-links.sh" "Create /opt links" --sudo
   run_script "$SCRIPT_DIR/fix-opt-permisson.sh" "Fix permissions for /opt"
