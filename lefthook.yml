@@ -28,6 +28,17 @@ pre-commit:
         --maskSecrets
         "{staged_files}"
 
+prepare-commit-msg:
+  commands:
+    prepare-by-codegpt:
+      run: >
+        dotenvx run --
+        codegpt
+        --config ./configs/codegpt.config.yaml
+        commit
+        --no_confirm --preview
+        --file .git/COMMIT_EDITMSG
+
 commit-msg:
   parallel: true
   commands:

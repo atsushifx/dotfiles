@@ -1,0 +1,29 @@
+gemini:
+    api_key: ""
+    backend: BackendGeminiAPI
+    location: ""
+    project_id: ""
+git:
+    diff_unified: 3
+    exclude_list: ""
+    template_file: ""
+    template_string: ""
+openai:
+    api_key: $CZ_OPENAI_TOKEN
+    api_version: ""
+    base_url: ""
+    headers: ""
+    max_tokens: 300
+    model: gpt-4o
+    org_id: ""
+    provider: openai
+    proxy: ""
+    skip_verify: true
+    socks: ""
+    temperature: "1"
+    timeout: 30s
+output:
+    file: ""
+    lang: en
+prompt:
+    folder: C:\Users\atsushifx/.config/codegpt/prompt

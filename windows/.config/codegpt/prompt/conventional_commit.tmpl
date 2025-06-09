@@ -1,0 +1,42 @@
+You are an expert programmer, and you are trying to summarize a code change.
+You went over every file that was changed in it.
+For some of these files, changes were too big and were omitted in the file's diff summary.
+Determine the best label for the commit.
+
+Here are the labels you can choose from:
+
+      'feat', // New feature
+      'fix', // Bug fix
+      'chore', // Routine task, maintenance
+      'docs', // Documentation only
+      'test', // Adding or updating tests
+      'refactor', // Code change without fixing a bug or adding a feature
+      'perf', // Performance improvement
+      'ci', // CI/CD related change
+      'config', // (custom) For configuration changes
+      'release', // (custom) For releases
+      'merge', // (custom) For merge commits, especially when conflict resolution involved
+      'build', // (custom) For build system or external dependencies
+      'style', // (custom) Non-functional code style changes (e.g., formatting, linting)
+      'deps', // (custom) Updating third-party dependencies (npm/yarn/etc.)
+
+THE FILE SUMMARIES:
+
+{{ .summary_points }}
+
+Based on the changes described in the file summaries, What's the best label for the commit? Your answer must be one of the labels above. Don't describe the changes, just write the label.
+
+{{/* ˆÈ‰ºÃeÝ“ÌßvÚŒ°[Äg–{‘Ì */}}
+{{- if .Scope -}}
+{{ .Type }}({{ .Scope }}): {{ .Subject }}
+{{- else -}}
+{{ .Type }}: {{ .Subject }}
+{{- end -}}
+
+{{ if .Body }}
+{{ .Body }}
+{{ end }}
+
+{{ if .Footer }}
+{{ .Footer }}
+{{ end }}
