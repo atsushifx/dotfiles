@@ -94,6 +94,8 @@ Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 . ($agLIBSDIR + "keyConfig.inc.ps1" )
 
 ### Modules
+# for ps1 TDD
+Import-Module Pester
 
 ## scoop
 Invoke-Expression (&scoop-search-multisource -hook)
