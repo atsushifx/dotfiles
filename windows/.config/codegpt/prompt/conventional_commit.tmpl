@@ -1,37 +1,38 @@
-You are an expert programmer, and you are trying to summarize a code change.
-You went over every file that was changed in it.
-For some of these files, changes were too big and were omitted in the file's diff summary.
-Determine the best label for the commit.
+You are an expert programmer summarizing a code change.
 
-Here are the labels you can choose from:
+You have reviewed every changed file in the commit. Some diffs may be too large and were omitted in detail.
+Choose the best label for the commit from the following:
 
-      'feat', // New feature
-      'fix', // Bug fix
-      'chore', // Routine task, maintenance
-      'docs', // Documentation only
-      'test', // Adding or updating tests
-      'refactor', // Code change without fixing a bug or adding a feature
-      'perf', // Performance improvement
-      'ci', // CI/CD related change
-      'config', // (custom) For configuration changes
-      'release', // (custom) For releases
-      'merge', // (custom) For merge commits, especially when conflict resolution involved
-      'build', // (custom) For build system or external dependencies
-      'style', // (custom) Non-functional code style changes (e.g., formatting, linting)
-      'deps', // (custom) Updating third-party dependencies (npm/yarn/etc.)
+- feat: New feature
+- fix: Bug fix
+- chore: Routine task or maintenance
+- docs: Documentation only
+- test: Adding or updating tests
+- refactor: Code change without fixing a bug or adding a feature
+- perf: Performance improvement
+- ci: CI/CD related change
+- config: Configuration changes
+- release: Release commit
+- merge: Merge commit, especially with conflict resolution
+- build: Changes to build system or external dependencies
+- style: Non-functional code style changes (formatting, linting)
+- deps: Updating third-party dependencies (npm/yarn/etc.)
 
-THE FILE SUMMARIES:
+---
+
+File change summaries:
 
 {{ .summary_points }}
 
-Based on the changes described in the file summaries, What's the best label for the commit? Your answer must be one of the labels above. Don't describe the changes, just write the label.
+---
 
-{{/* ˆÈ‰ºÃeÝ“ÌßvÚŒ°[Äg–{‘Ì */}}
+Commit message template:
+
 {{- if .Scope -}}
 {{ .Type }}({{ .Scope }}): {{ .Subject }}
 {{- else -}}
 {{ .Type }}: {{ .Subject }}
-{{- end -}}
+{{- end }}
 
 {{ if .Body }}
 {{ .Body }}

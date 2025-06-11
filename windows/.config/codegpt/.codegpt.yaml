@@ -14,7 +14,7 @@ openai:
     base_url: ""
     headers: ""
     max_tokens: 300
-    model: gpt-4o
+    model: gpt-4.1-mini
     org_id: ""
     provider: openai
     proxy: ""
@@ -24,6 +24,6 @@ openai:
     timeout: 30s
 output:
     file: ""
-    lang: en
+    lang: ja
 prompt:
     folder: C:\Users\atsushifx/.config/codegpt/prompt
