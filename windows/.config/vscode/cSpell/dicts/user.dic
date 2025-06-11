@@ -32,8 +32,10 @@ gitleaks
 gitworks
 gnupg
 gpg
+gpt
 gsudo
 helperselector
+HKLM
 hoge
 iarna
 japanese
@@ -68,6 +70,7 @@ supplypike
 tasksel
 techblog
 THISCMD
+tmpl
 trivy
 tsparser
 tsumugi
