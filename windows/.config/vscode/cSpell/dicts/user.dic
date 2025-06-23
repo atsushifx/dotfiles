@@ -1,10 +1,13 @@
 # dictionary for user common  words:
+agentic
 agla
 aglabo
+anthropics
 Atsushi
 atsushifx
 automount
 chgrp
+claude
 codegpt
 commitlint
 constuctor
@@ -12,6 +15,7 @@ debian
 deno
 dic
 difftool
+docusaurus
 dotenv
 dotenvx
 dprint
@@ -39,6 +43,7 @@ HKLM
 hoge
 iarna
 japanese
+jspm
 kobeni
 lefthook
 lesshst
@@ -69,16 +74,20 @@ sudachi
 supplypike
 tasksel
 techblog
+textlint
 THISCMD
 tmpl
 trivy
 tsparser
 tsumugi
+vibecoding
 vitepress
 vitest
 volta
+vuepress
 Wakatime
 winget
 WORKINGDIR
+wscript
 XDG
 Zenn
