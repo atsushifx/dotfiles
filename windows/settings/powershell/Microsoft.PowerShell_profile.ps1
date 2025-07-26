@@ -94,6 +94,8 @@ Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
 . ($agLIBSDIR + "keyConfig.inc.ps1" )
 
 ### Modules
+# for ps1 TDD
+Import-Module Pester
 
 ## scoop
 Invoke-Expression (&scoop-search-multisource -hook)
@@ -115,10 +117,6 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 # Wakatime setup
 # use wakatime for windows
 . "$agSCRIPTSDIR/pwsh-wakatime.ps1"
-
-# BuildTools Path
-
-# pnpm monorepo
 
 # setup ocaml
 # (& opam env) -split '\r?\n' | ForEach-Object { Invoke-Expression $_ }

@@ -1,0 +1,9 @@
+openai:
+  provider: "openai"
+  model: gpt-4o
+
+output:
+  lang: ja
+
+prompt:
+  folder: "./configs/codegpt/prompt/"

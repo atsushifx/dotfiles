@@ -16,16 +16,16 @@
 #<<
 
 ## Utils
-# TabNine
-**/TabNine/*
-# !**/TabNine/TabNine.toml
-!**/TabNine/*config*.json
-
 # git
 jgit/*
 
 
+## AI Agents
+# claude code
+claude/*
+!claude/*.MD
+!claude/command/*
+!claude/settings.json
+
+
 ## Languages
-# Racket
-_lock*
-racket-prefs.rktd

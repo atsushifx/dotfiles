@@ -8,12 +8,12 @@
 # @update   2022-07-03
 # @license  MIT
 #
-# @dersc
+# @desc<<
 # git ignore files about,
 #   credential files
 #   hist, info for dotfiles
 #
-#
+#<<
 
 ###
 #	general ignore files
@@ -58,3 +58,7 @@ $~*
 *.diff
 *.patch
 
+##	AI Agent
+# claude
+*/.claude/*
+!**/.claude/settings.json

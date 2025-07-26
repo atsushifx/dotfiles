@@ -22,13 +22,25 @@
 	],
 	"dictionaries": [
 		"en-us",
+		// special terms
 		"software-terms",
 		"public-licenses",
+		// programming languages dictionaries
+		"markdown",
+		"css",
+		"html",
+		"fullstack",
+		"typescript",
 		"shellscript",
+		"powershell",
 		"vim",
+		// user defined dictionaries
 		"user-dic",
-		"textlint-dic",
 		"project-dic"
+	],
+	"ignorePaths": [
+		"**/node_modules/**",
+		"**lock.*",
 	],
 	"useGitignore": true
 }

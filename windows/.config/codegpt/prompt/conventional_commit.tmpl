@@ -1,0 +1,43 @@
+You are an expert programmer summarizing a code change.
+
+You have reviewed every changed file in the commit. Some diffs may be too large and were omitted in detail.
+Choose the best label for the commit from the following:
+
+- feat: New feature
+- fix: Bug fix
+- chore: Routine task or maintenance
+- docs: Documentation only
+- test: Adding or updating tests
+- refactor: Code change without fixing a bug or adding a feature
+- perf: Performance improvement
+- ci: CI/CD related change
+- config: Configuration changes
+- release: Release commit
+- merge: Merge commit, especially with conflict resolution
+- build: Changes to build system or external dependencies
+- style: Non-functional code style changes (formatting, linting)
+- deps: Updating third-party dependencies (npm/yarn/etc.)
+
+---
+
+File change summaries:
+
+{{ .summary_points }}
+
+---
+
+Commit message template:
+
+{{- if .Scope -}}
+{{ .Type }}({{ .Scope }}): {{ .Subject }}
+{{- else -}}
+{{ .Type }}: {{ .Subject }}
+{{- end }}
+
+{{ if .Body }}
+{{ .Body }}
+{{ end }}
+
+{{ if .Footer }}
+{{ .Footer }}
+{{ end }}
