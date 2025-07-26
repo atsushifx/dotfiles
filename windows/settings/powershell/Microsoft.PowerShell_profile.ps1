@@ -118,10 +118,6 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 # use wakatime for windows
 . "$agSCRIPTSDIR/pwsh-wakatime.ps1"
 
-# BuildTools Path
-
-# pnpm monorepo
-
 # setup ocaml
 # (& opam env) -split '\r?\n' | ForEach-Object { Invoke-Expression $_ }
 
