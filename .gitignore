@@ -7,7 +7,7 @@
 #
 
 ###
-#	editor backups
+#   editor backups
 
 
 ###
@@ -16,6 +16,20 @@
 **/.ssh/*
 **/.gnupg/*
 *cred*
+
+## AI generated files
+
+## Coding AI depended
+# CLAUDE.md
+.claude/*
+
+# MCP server dependency files
+.serena/
+.lsmcp/
+
+## Temporary Directory
+temp/
+tmp/
 
 ###
 #
@@ -34,7 +48,7 @@
 # ignore scoop settings
 **/scoop/
 
-## pnpm ?
+## pnpm
 **/configStore/*
 
 
@@ -47,4 +61,7 @@
 *hist*
 *info*
 
+## .Env
+.env
+.env.*
 .env*
