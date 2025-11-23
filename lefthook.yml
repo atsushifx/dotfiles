@@ -30,14 +30,8 @@ pre-commit:
 
 prepare-commit-msg:
   commands:
-    prepare-by-codegpt:
-      run: >
-        dotenvx run --
-        codegpt
-        --config ./configs/codegpt.config.yaml
-        commit
-        --no_confirm --preview
-        --file .git/COMMIT_EDITMSG
+    prepare-commit-msg-by-ai:
+      run: bash -c 'scripts/prepare-commit-msg.sh --git-buffer'
 
 commit-msg:
   parallel: true

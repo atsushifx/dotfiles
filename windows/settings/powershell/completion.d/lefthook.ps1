@@ -6,4 +6,4 @@
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
-lefthook completion powershell | Out-String | Invoke-Expression
+lefthook completion pwsh | Out-String | Invoke-Expression
