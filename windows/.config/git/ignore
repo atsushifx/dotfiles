@@ -1,32 +1,29 @@
-##
-##  @(#) : git global untrack file settings
+# src: .gitignore
+# @(#) : typescript compile settings
 #
-##
+# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
 #
-# @version  1.0.4
-# @author   Furukawa, Atsushi <atsushifx@aglabo.com>
-# @update   2022-07-03
-# @license  MIT
-#
-# @desc<<
-# git ignore files about,
-#   credential files
-#   hist, info for dotfiles
-#
-#<<
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-###
-#	general ignore files
-#
 
-##
-#	OS created files
-#
+##  General
+#   OS specific files
 .DS_Store
 thumbs.db
 
-##
-#	backup/swap/temp
+#   logs, patches
+*.log
+*.diff
+*.patch
+
+#   history, cache
+.history/
+.cache/
+**/*cache
+
+
+#   backup/swap/temp
 $~*
 ~*
 *~
@@ -34,31 +31,20 @@ $~*
 *swp
 *lock
 
-##
-#	credential files
-#	private key, etc
-#
-**/.ssh/
-**/.gnupg/*
-**/.dbus-keyrings/
-*credential*
+# .env files
+.env*
+.env.*
 
-##
-#	shell & app created files
+## AI generated files
 
-#	history & info
-.*hist*
-.*info*
+## Coding AI depended
+# CLAUDE.md
+.claude/*
 
-#	Log Files
-*.log
+# MCP server dependency files
+.serena/
+.lsmcp/
 
-#	ignore programming
-#  patch
-*.diff
-*.patch
-
-##	AI Agent
-# claude
-*/.claude/*
-!**/.claude/settings.json
+## Temporary Directory
+temp/
+tmp/

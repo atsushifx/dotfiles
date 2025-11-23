@@ -23,6 +23,15 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 #>
 
 ## Script Setup
+if (Test-Path "W:") { # ramdisk exist
+  mkdir w:\temp -ErrorAction SilentlyContinue | Out-Null
+  mkdir w:\tmp -ErrorAction SilentlyContinue | Out-Null
+
+  $env:TEMP="W:\temp"
+  $env:TMP="W:\temp"
+}
+
+
 Set-StrictMode -version latest
 . $PSScriptRoot'/libs/commonSettings.inc.ps1'
 
