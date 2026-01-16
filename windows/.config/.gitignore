@@ -18,7 +18,8 @@
 ## Utils
 # git
 jgit/*
-
+scoop/
+configstore/
 
 ## AI Agents
 # claude code
