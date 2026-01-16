@@ -18,102 +18,102 @@
 #<<
 
 [core]
-	autocrlf = input
-	symlinks = true
-	attributesfile = ~/.local/dotfiles/common/git/attributes
+    autocrlf = input
+    symlinks = true
+    attributesfile = ~/.local/dotfiles/common/git/attributes
     excludesfile = ~/.local/dotfiles/common/git/ignore
-	smonitor = true
-	untrackedCache = true
-	ignorecase = false
+    smonitor = true
+    untrackedCache = true
+    ignorecase = false
 
 [color]
-	ui = true
+    ui = true
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [push]
-	default = current
+    default = current
 
 [pull]
-	ff = only
+    ff = only
 
 [merge]
-	ff = false
-	conflictstyle = zdiff3
+    ff = false
+    conflictstyle = zdiff3
 
 [branch]
-	sort = -committerdate
+    sort = -committerdate
 
 [rebase]
-	autosquash = true
-	autostash = true
-	abbreviateCommands = true
+    autosquash = true
+    autostash = true
+    abbreviateCommands = true
 
 [fetch]
 
 [column]
-	ui = auto
+    ui = auto
 
 [diff]
-	tool = difftastic
-#	colorMoved = default
-#	algorithm = histogram
+    tool = difftastic
+#   colorMoved = default
+#   algorithm = histogram
 [difftool]
-	prompt = false
+    prompt = false
 
 [difftool "difftastic"]
-	cmd = difft --skip-unchanged --strip-cr "$LOCAL" "$REMOTE"
+    cmd = difft --skip-unchanged --strip-cr "$LOCAL" "$REMOTE"
 
 [pager]
-	difftool = true
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
+    difftool = true
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 
 #[interactive]
-#	diffFilter = delta --color-only
+#   diffFilter = delta --color-only
 
 [user]
-	name = Furukawa Atsushi
-	email = atsushifx@gmail.com
+    name = Furukawa Atsushi
+    email = atsushifx@gmail.com
 
 [aliases]
 
 
 [alias]
-	ss = status -s
-	br = branch
-	co = checkout
-	sw = switch
-	diff = diff -b -w
-	dft = difftool
-	pr = pull -r
-	pushf = push --force-with-lease
-	co = checkout
-	st = status
-	tags = tag -l
-	remotes = remote -v
-	fixit = commit --amend --no-edit
-	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-	ll = log --stat --abbrev-commit
-	lg = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ss = status -s
+    br = branch
+    co = checkout
+    sw = switch
+    diff = diff -b -w
+    dft = difftool
+    pr = pull -r
+    pushf = push --force-with-lease
+    co = checkout
+    st = status
+    tags = tag -l
+    remotes = remote -v
+    fixit = commit --amend --no-edit
+    l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    ll = log --show-signature --stat --abbrev-commit
+    lg = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 aliases = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
 
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 
 [delta]
-	syntax-theme = Dracula
-	line-numbers = true
-	side-by-side = true
-	navigate = true
-	file-decoration-style = white box
-	hunk-header-style = omit
+    syntax-theme = Dracula
+    line-numbers = true
+    side-by-side = true
+    navigate = true
+    file-decoration-style = white box
+    hunk-header-style = omit
 
 [rerere]
-	enabled = true
+    enabled = true

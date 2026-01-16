@@ -1,67 +1,79 @@
-##
-##  ignore files using  git
-##    for windows dotfiles
-##
-
-### general file settings
+# src: .gitignore
+# @(#) : typescript compile settings
 #
-
-###
-#   editor backups
-
-
-###
-# credentials
+# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
 #
-**/.ssh/*
-**/.gnupg/*
-*cred*
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+
+##  General
+#   OS specific files
+.DS_Store
+thumbs.db
+
+#   logs, patches
+*.log
+*.diff
+*.patch
+
+#   history, cache
+.history/
+.cache/
+**/*cache
+
+
+#   backup/swap/temp
+$~*
+~*
+*~
+*tmp
+*swp
+*lock
+
+# session files
+*session.json
+*session
+**/*session.json
+**/*session
+
+# .env files
+.env*
+.env.*
 
 ## AI generated files
 
 ## Coding AI depended
-# CLAUDE.md
+# SDD (Spec-Driven Development) files
+**/.cc-sdd/
+
+# claude code setting
 .claude/*
+
+# agents can tracking
+!.claude/agents/
+!.claude/agents/**
 
 # MCP server dependency files
 .serena/
 .lsmcp/
 
-## Temporary Directory
+## Temporary directories are never tracked
 temp/
 tmp/
-
-###
-#
-# Windows settings
-#
+**/temp/
+**/tmp/
 
 
-## PowerShell
+##  Editor
+#   VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!.vscode/cspell*
 
-# ignore modules
-**/powershell/Modules/*
-**/PSReadLine/
-
-## Scoop
-
-# ignore scoop settings
-**/scoop/
-
-## pnpm
-**/configStore/*
-
-
-
-##
-# unix settings
-
-
-## shell & apps
-*hist*
-*info*
-
-## .Env
-.env
-.env.*
-.env*
+## Node
+node_modules/
