@@ -1,17 +1,10 @@
-# src: ./lefthook.yml
-## @(#) : lefthook config
+# src: lefthook.yml
+# @(#) : lefthook config
 #
-# @version  1.0.0
-# @date     2025-05-14
-# @author   atsushifx <https://github.com/atsushifx>
-# @license  MIT
+# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
 #
-# @description<<
-#
-# Git hook configuration powered by Lefthook.
-# Ensures commit hygiene with secret scanning and commit message linting.
-#
-#<<
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
 pre-commit:
   parallel: true
@@ -27,14 +20,17 @@ pre-commit:
         --secretlintignore .gitignore
         --maskSecrets
         "{staged_files}"
+      skip:
+        - empty
 
 prepare-commit-msg:
   commands:
-    prepare-commit-msg-by-ai:
-      run: bash -c 'scripts/prepare-commit-msg.sh --git-buffer'
+    prepare-message-script:
+      run: bash -c './scripts/prepare-commit-msg.sh --model sonnet --git-buffer'
 
+# check commit message as Conventional Commit
 commit-msg:
   parallel: true
   commands:
     commitlint:
-      run: commitlint --config ./configs/commitlint.config.ts --edit
+      run: commitlint --config ./configs/commitlint.config.js --edit

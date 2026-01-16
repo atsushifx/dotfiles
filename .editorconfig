@@ -1,78 +1,102 @@
-## EditorConfig is awesome: https://EditorConfig.org
+# src: shared/configs/secretlint.config.base.yaml
+# @(#) : editorconfig base configs (templates)
 #
-# @(#)  default editorconfig settings for user
+# Copyright (c) 2025 atsushifx <https://github.com/atsushifx>
 #
-# @version	1.0.4
-# @date		2022-07-02
-# @author	Furukawa, Atsushi <atsushifx@aglabo.com>
-# @license	MIT
-#
-# @description
-# user default editorconfig :
-# symlink this to ~ : user root
-#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-# top-most EditorConfig file
 root = true
 
-# Unix-style newlines with a newline ending every file
+# ─────────────────────────────
+# Base Settings
+# ─────────────────────────────
 [*]
 end_of_line = lf
 insert_final_newline = true
-
-# default character-set
 charset = utf-8
-
-# indent style
-indent_style = space
-indent_size = 4
-tab_width = 4
-
-# ext type settings
-
-### General Files
-
-# shell script
-[**.{sh,bash,zsh}]
 indent_style = space
 indent_size = 2
 tab_width = 2
 
-### Programming Languages
-
-
-### Settings Files
-# ini files
-[**.ini]
-tab_width = 4
-indent_style = tab
-
-# json, yml
-[**.{json,yaml,yml}]
-indent_style = tab
-indent_size = tab
-tab_width = 4
-
-# rc files
-[**rc]
-tab_width = 2
+# ─────────────────────────────
+# Documents
+# ─────────────────────────────
+[*.md]
 indent_style = space
-
-### Documents
-# markdown
-[**.md]
-indent_size = tab
+indent_size = 2
 tab_width = 2
-indent_style = space
 
-### Git config
-# for git config
-[**.git*]
+# ─────────────────────────────
+# JSON
+# ─────────────────────────────
+[*.json]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+# ─────────────────────────────
+# YAML
+# ─────────────────────────────
+[*.{yaml,yml}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+# ─────────────────────────────
+# INI / TOML
+# ─────────────────────────────
+[*.ini]
 indent_style = tab
-indent_size = tab
+tab_width = 4
+
+[*.toml]
+indent_style = tab
+tab_width = 4
+
+# ─────────────────────────────
+# rc Files
+# ─────────────────────────────
+[*rc]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+# ─────────────────────────────
+# Shell Scripts
+# ─────────────────────────────
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+# PowerShell
+[*.ps1]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# ─────────────────────────────
+# Git Config Files
+# ─────────────────────────────
+[*.git*]
+indent_style = tab
 tab_width = 4
 
 [**/git/*]
 indent_style = tab
-indent_size = tab
 tab_width = 4
+
+# ─────────────────────────────
+# Special Files (e.g. Dockerfile, LICENSE)
+# ─────────────────────────────
+# ignore files
+[**/*ignore]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+
+# [Dockerfile]
+# indent_style = space
+# indent_size = 2
