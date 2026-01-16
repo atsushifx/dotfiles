@@ -15,9 +15,8 @@ permissions:
 on:
   push:
     branches:
-      - main
-      - master
-      - releases
+      - main-windows
+      - main-linux
 
   pull_request:
     branches:
