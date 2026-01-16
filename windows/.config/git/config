@@ -20,60 +20,60 @@
 
 # setting from common
 [include]
-	path = ~/.local/dotfiles/common/git/config
+    path = ~/.local/dotfiles/common/git/config
 
 ## general settings for Windows Git
 #
 [core]
-	autocrlf = input
-	symlinks = true
+    autocrlf = input
+    symlinks = true
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [user]
-	name = Furukawa Atsushi
-	email = atsushifx@gmail.com
-	signingkey = atsushifx@gmail.com
+    name = Furukawa Atsushi
+    email = atsushifx@gmail.com
+    signingkey = 103421ED775C18D3
 
 [pull]
-	ff = only
+    ff = only
 
 [diff]
-	tool = p4merge
+    tool = p4merge
 
 [merge]
-	tool = p4merge
+    tool = p4merge
 
 [difftool]
-	prompt = false
+    prompt = false
 
 [mergetool]
-	prompt = false
+    prompt = false
 
 [fetch]
 
 [gpg]
-	program = "C:/app/develop/utils/GnuPG/bin/gpg.exe"
+    program = "C:/app/develop/utils/GnuPG/bin/gpg.exe"
 
 [credential]
-	helper = store --file ~/.local/share/git/.git-credentials
-	helper = manager
+    helper = store --file ~/.local/share/git/.git-credentials
+    helper = manager
 
 [credential "helperselector"]
-	selected = manager
+    selected = manager
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [ghq]
-	root = ~/workspaces/repos
-	root = ~/workspaces/sandbox
-	root = ~/workspaces/education
-	root = ~/workspaces/develop
+    root = ~/workspaces/repos
+    root = ~/workspaces/sandbox
+    root = ~/workspaces/education
+    root = ~/workspaces/develop
 
 [safe]
-	directory = C:/Users/atsushifx/app/scoop/apps/scoop/current
+    directory = C:/Users/atsushifx/app/scoop/apps/scoop/current
