@@ -80,8 +80,8 @@ function private:write-sudo-messages() {
 }
 
 <#
-	.SYNOPSIS
-	set current working directory to workspaces if call from menu/explorer
+    .SYNOPSIS
+    set current working directory to workspaces if call from menu/explorer
 #>
 function private:Set-WorkingDir() {
   $cur = Get-Location
@@ -91,6 +91,12 @@ function private:Set-WorkingDir() {
 }
 
 ### main routine
+
+## use firewall for npm,pnpm safer
+function Invoke-SfwPnpm() { & sfw pnpm @args }
+Set-Alias pnpm Invoke-SfwPnpm -Description { "safe pnpm" }
+
+
 ##
 Set-WorkingDir
 
@@ -98,6 +104,7 @@ Set-WorkingDir
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
+Set-PSReadlineOption -HistoryNoDuplicates
 
 ## key binding
 . ($agLIBSDIR + "keyConfig.inc.ps1" )
@@ -113,7 +120,7 @@ Invoke-Expression (&scoop-search-multisource -hook)
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-# carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
+carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
 
 ## tab completion
 Import-Module -Name CompletionPredictor
@@ -136,3 +143,4 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 if ([aglaUserRole]::isAdmin()) {
   write-sudo-messages;
 }
+
