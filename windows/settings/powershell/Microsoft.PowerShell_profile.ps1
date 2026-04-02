@@ -96,7 +96,6 @@ function private:Set-WorkingDir() {
 function Invoke-SfwPnpm() { & sfw pnpm @args }
 Set-Alias pnpm Invoke-SfwPnpm -Description { "safe pnpm" }
 
-
 ##
 Set-WorkingDir
 
@@ -120,7 +119,7 @@ Invoke-Expression (&scoop-search-multisource -hook)
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
+# carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
 
 ## tab completion
 Import-Module -Name CompletionPredictor
