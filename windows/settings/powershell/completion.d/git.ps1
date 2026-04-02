@@ -1,7 +1,7 @@
 <#
   .SYNOPSIS
     git completion for powershell
-  
+
   .DESCRIPTION
     set up git completion with posh-git
 
@@ -12,7 +12,7 @@
     @date     2023-05-31
     @Version  1.0.0
 
-THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. 
+THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
 THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 #>
 
