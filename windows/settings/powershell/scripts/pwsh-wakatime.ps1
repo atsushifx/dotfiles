@@ -1,4 +1,4 @@
-Import-Module posh-git
+# Import-Module posh-git
 
 ## PROMPT MANAGEMENT ###########################################################
 
@@ -11,15 +11,6 @@ Import-Module posh-git
         Causes a WakaTime heartbeat sent at the current session's prompt.
 #>
 
-# Use the same procedure as in conda to nest prompts.
-if (Test-Path Function:\prompt) {
-    Rename-Item Function:\prompt WakaTimePromptBackup
-} else {
-    function WakaTimePromptBackup() {
-        # Restore a basic prompt if the definition is missing.
-        "PS $($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1)) ";
-    }
-}
 function Test-Wakatime {return $(if($(where.exe wakatime)) {$True} else {$False})}
 
 function Send-WakaTimeHeartbeat(){
@@ -74,4 +65,17 @@ function Send-HeartbeatAtPrompt() {
         WakaTimePromptBackup;
     }
 }
-Send-HeartbeatAtPrompt
+
+# Use the same procedure as in conda to nest prompts.
+# Guard against re-loading: skip setup if already initialized.
+if (-not (Test-Path Function:\WakaTimePromptBackup)) {
+    if (Test-Path Function:\prompt) {
+        Rename-Item Function:\prompt WakaTimePromptBackup
+    } else {
+        function WakaTimePromptBackup() {
+            # Restore a basic prompt if the definition is missing.
+            "PS $($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1)) ";
+        }
+    }
+    Send-HeartbeatAtPrompt
+}
