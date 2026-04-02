@@ -80,8 +80,8 @@ function private:write-sudo-messages() {
 }
 
 <#
-	.SYNOPSIS
-	set current working directory to workspaces if call from menu/explorer
+    .SYNOPSIS
+    set current working directory to workspaces if call from menu/explorer
 #>
 function private:Set-WorkingDir() {
   $cur = Get-Location
@@ -91,6 +91,11 @@ function private:Set-WorkingDir() {
 }
 
 ### main routine
+
+## use firewall for npm,pnpm safer
+function Invoke-SfwPnpm() { & sfw pnpm @args }
+Set-Alias pnpm Invoke-SfwPnpm -Description { "safe pnpm" }
+
 ##
 Set-WorkingDir
 
@@ -98,6 +103,7 @@ Set-WorkingDir
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
+Set-PSReadlineOption -HistoryNoDuplicates
 
 ## key binding
 . ($agLIBSDIR + "keyConfig.inc.ps1" )
@@ -109,16 +115,23 @@ Import-Module Pester
 ## scoop
 Invoke-Expression (&scoop-search-multisource -hook)
 
+
+## tab completion
+# Git completion
+import-module posh-git
+
 # carapace completion tool for powershell
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-# carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
+carapace _carapace | Out-String | Invoke-Expression # setup source in completion.d
 
-## tab completion
-Import-Module -Name CompletionPredictor
+# completion from completion.d
 # Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { write-output $_.BaseName && . $_.FullName }
 Get-ChildItem -Path "$basedir/completion.d/*.ps1" | ForEach-Object { . $_.FullName }
+
+# Completion with History
+Import-Module -Name CompletionPredictor
 
 ## Other tools
 $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
@@ -136,3 +149,4 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 if ([aglaUserRole]::isAdmin()) {
   write-sudo-messages;
 }
+
