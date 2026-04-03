@@ -1,34 +1,4 @@
 {
   "mcpServers": {
-    "serena-mcp": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--context",
-        "ide-assistant",
-        "--project",
-        "."
-      ]
-    },
-    "codex-mcp": {
-      "type": "stdio",
-      "command": "C:/Users/atsushifx/.local/share/pnpm/codex",
-      "args": [
-        "mcp-server"
-      ],
-      "env": {}
-    },
-    "lsmcp": {
-      "type": "stdio",
-      "command": "lsmcp",
-      "args": [
-        "-p",
-        "typescript"
-      ]
-    }
   }
 }

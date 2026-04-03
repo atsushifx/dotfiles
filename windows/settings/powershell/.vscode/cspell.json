@@ -5,16 +5,16 @@
   "language": "en",
   "caseSensitive": true,
   "dictionaryDefinitions": [
-	{
-		"name": "powershell-dic",
-		"description": "powershell script's dictionnary",
-		"path": "./cSpell/dicts/powershell.dic",
-		"addWords": true,
-		"scope": "workspace"
-	}
+    {
+      "name": "powershell-dic",
+      "description": "powershell script's dictionnary",
+      "path": "./cSpell/dicts/powershell.dic",
+      "addWords": true,
+      "scope": "workspace"
+    }
   ],
   "dictionaries": [
-  	"user-dic",
-  	"powershell-dic"
+    "user-dic",
+    "powershell-dic"
   ]
 }

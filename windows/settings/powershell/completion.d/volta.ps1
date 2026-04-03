@@ -17,4 +17,4 @@ THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
 THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 #>
 
-# volta completions powershell | Out-String | Invoke-Expression
+volta completions powershell | Out-String | Invoke-Expression

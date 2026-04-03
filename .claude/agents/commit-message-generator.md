@@ -162,7 +162,8 @@ refactor(logger): ロギングロジックを分離
 
 ## Execution
 
-Remove headers/footers before actual commit. Delegate execution to codex-mcp.
+Output the commit message **with** `=== commit header ===` and `=== commit footer ===` markers.
+Do NOT remove the markers. The calling script extracts the message between these markers.
 
 ---
 

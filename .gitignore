@@ -1,7 +1,7 @@
 # src: .gitignore
-# @(#) : typescript compile settings
+# @(#) : mainly ignored files and directories
 #
-# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2025- atsushifx <http://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
@@ -20,7 +20,7 @@ thumbs.db
 #   history, cache
 .history/
 .cache/
-**/*cache
+# **/*cache
 
 
 #   backup/swap/temp
@@ -41,20 +41,35 @@ $~*
 .env*
 .env.*
 
+## Development tools (installed locally)
+.tools/
+
+## Worktrees
+# worktree base dir
+.worktrees/
+
 ## AI generated files
+**/.copilot
 
 ## Coding AI depended
+**/.copilot/
+
 # SDD (Spec-Driven Development) files
 **/.cc-sdd/
 
 # claude code setting
-.claude/*
+**/.claude/*
 
 # agents can tracking
 !.claude/agents/
 !.claude/agents/**
+!.claude/rules/
+!.claude/rules/**
+!.claude/commands/
+!.claude/commands/**
 
 # MCP server dependency files
+.cocoindex_code/
 .serena/
 .lsmcp/
 
@@ -63,7 +78,6 @@ temp/
 tmp/
 **/temp/
 **/tmp/
-
 
 ##  Editor
 #   VSCode

@@ -56,14 +56,15 @@
     ui = auto
 
 [diff]
-    tool = difftastic
-#   colorMoved = default
-#   algorithm = histogram
+    tool = delta
+	# colorMoved = default
+	# algorithm = histogram
+
 [difftool]
     prompt = false
 
 [difftool "difftastic"]
-    cmd = difft --skip-unchanged --strip-cr "$LOCAL" "$REMOTE"
+    cmd = difft --skip-unchanged --strip-cr on "$LOCAL" "$REMOTE"
 
 [pager]
     difftool = true
@@ -78,9 +79,6 @@
 [user]
     name = Furukawa Atsushi
     email = atsushifx@gmail.com
-
-[aliases]
-
 
 [alias]
     ss = status -s

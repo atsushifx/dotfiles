@@ -34,13 +34,13 @@
 [user]
     name = Furukawa Atsushi
     email = atsushifx@gmail.com
-    signingkey = 103421ED775C18D3
+    signingkey = 839C0A383AB25F34
 
 [pull]
     ff = only
 
 [diff]
-    tool = p4merge
+    tool = difftastic
 
 [merge]
     tool = p4merge

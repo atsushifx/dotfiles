@@ -48,3 +48,5 @@ $~*
 ## Temporary Directory
 temp/
 tmp/
+
+**/.claude\settings.local.json
