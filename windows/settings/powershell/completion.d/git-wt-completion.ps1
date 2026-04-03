@@ -58,14 +58,14 @@ if (Get-Command git-wt -ErrorAction SilentlyContinue) {
         $gitWtAsSubcommandCompleter = {
             param($wordToComplete, $commandAst, $cursorPosition)
 
-            $cmdText = $commandAst.Extent.Text.Substring(
-                0, [math]::Min($cursorPosition, $commandAst.Extent.Text.Length)
-            )
+            # posh-git と同じ方式で textToComplete を構築（末尾スペース保持のためパディングが必要）
+            $padLength = $cursorPosition - $commandAst.Extent.StartOffset
+            $textToComplete = $commandAst.ToString().PadRight($padLength, ' ').Substring(0, $padLength)
 
             # git wt ... の場合のみ処理、それ以外は posh-git にフォールバック
-            if ($cmdText -notmatch '^git\s+wt(\s|$)') {
+            if ($textToComplete -notmatch '^git\s+wt(\s|$)') {
                 if (Get-Command Expand-GitCommand -ErrorAction SilentlyContinue) {
-                    return Expand-GitCommand $cmdText
+                    return Expand-GitCommand $textToComplete
                 }
                 return
             }
