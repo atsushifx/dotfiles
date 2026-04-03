@@ -43,4 +43,4 @@ jobs:
     name: Gitleaks Secret Scan
     permissions:
       contents: read
-    uses: aglabo/.github/.github/workflows/ci-common-scan-gitleaks.yml@r1.0.4
+    uses: aglabo/.github/.github/workflows/ci-common-scan-gitleaks.yml@r1.1.2
