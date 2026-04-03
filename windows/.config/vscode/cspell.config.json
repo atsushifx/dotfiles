@@ -1,47 +1,47 @@
 // @(#) :  cspell config for user centric settings
 {
-    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
-    "version": "0.2",
-    "language": "en",
-    "caseSensitive": true,
-    "dictionaryDefinitions": [
-        {
-            "name": "user-dic",
-            "description": "dictionary words for user settings",
-            "path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/user.dic",
-            "addWords": true,
-            "scope": "user"
-        },
-        {
-            "name": "textlint-dic",
-            "description": "Dictionary: textlint words for plugin name, ...",
-            "path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/textlint.dic",
-            "addWords": true,
-            "scope": "user"
-        }
-    ],
-    "dictionaries": [
-        "en-us",
-        // special terms
-        "software-terms",
-        "public-licenses",
-        // programming languages dictionaries
-        "markdown",
-        "css",
-        "html",
-        "fullstack",
-        "typescript",
-        "shellscript",
-        "powershell",
-        "vim",
-        // user defined dictionaries
-        "user-dic",
-        "textlint-dic",
-        "project-dic"
-    ],
-    "ignorePaths": [
-        "**/node_modules/**",
-        "**lock.*",
-    ],
-    "useGitignore": true
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "caseSensitive": true,
+  "dictionaryDefinitions": [
+    {
+      "name": "user-dic",
+      "description": "dictionary words for user settings",
+      "path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/user.dic",
+      "addWords": true,
+      "scope": "user"
+    },
+    {
+      "name": "textlint-dic",
+      "description": "Dictionary: textlint words for plugin name, ...",
+      "path": "${env:XDG_CONFIG_HOME}/vscode/cSpell/dicts/textlint.dic",
+      "addWords": true,
+      "scope": "user"
+    }
+  ],
+  "dictionaries": [
+    "en-us",
+    // special terms
+    "software-terms",
+    "public-licenses",
+    // programming languages dictionaries
+    "markdown",
+    "css",
+    "html",
+    "fullstack",
+    "typescript",
+    "shellscript",
+    "powershell",
+    "vim",
+    // user defined dictionaries
+    "user-dic",
+    "textlint-dic",
+    "project-dic"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**lock.*"
+  ],
+  "useGitignore": true
 }

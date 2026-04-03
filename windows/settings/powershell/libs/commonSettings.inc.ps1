@@ -42,6 +42,9 @@ Set-StrictMode -version latest
 #>
 
 function Init_ScriptEnvironments() {
+	# Guard against re-initialization: skip setup if already initialized
+	if (Test-Path Variable:Global:agBaseDir) { return }
+
 	Set-Variable -Scope Global -Option ReadOnly -Name agBaseDir -Value (Split-Path -Path $PROFILE)
 	Set-Variable -Scope Global -Option ReadOnly -Name agLIBSDIR -Value $agBaseDir'/libs/' -Description 'common libs directory'
 	Set-Variable -Scope Global -Option ReadOnly -Name agSCRIPTSDIR -Value $agBaseDir'/scripts/' -Description 'Common scripts directory'

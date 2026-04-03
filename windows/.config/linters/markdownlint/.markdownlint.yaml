@@ -30,5 +30,3 @@ no-hard-tabs: true
 # Table columns
 table-column-style:
   style: align
-
-
