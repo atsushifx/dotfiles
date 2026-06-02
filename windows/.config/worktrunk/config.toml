@@ -1,0 +1,3 @@
+skip-shell-integration-prompt = true
+
+worktree-path = ".worktrees/{{ branch | sanitize }}"

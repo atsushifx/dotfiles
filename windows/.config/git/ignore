@@ -20,7 +20,7 @@ thumbs.db
 #   history, cache
 .history/
 .cache/
-**/*cache
+# **/*cache
 
 
 #   backup/swap/temp
@@ -29,7 +29,6 @@ $~*
 *~
 *tmp
 *swp
-*lock
 
 # .env files
 .env*
