@@ -79,25 +79,12 @@ function private:write-sudo-messages() {
   $messages | write-output
 }
 
-<#
-    .SYNOPSIS
-    set current working directory to workspaces if call from menu/explorer
-#>
-function private:Set-WorkingDir() {
-  $cur = Get-Location
-  if ($cur -eq $env:USERPROFILE) {
-    Set-Location $USERPROFILE+"/workspaces"
-  }
-}
-
 ### main routine
 
 ## use firewall for npm,pnpm safer
 function Invoke-SfwPnpm() { & sfw pnpm @args }
 Set-Alias pnpm Invoke-SfwPnpm -Description { "safe pnpm" }
 
-##
-Set-WorkingDir
 
 ## input History Plugin
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
@@ -148,5 +135,12 @@ $env:NODE_PATH = $env:PNPM_HOME + "\5\node_modules"
 # sudo messages
 if ([aglaUserRole]::isAdmin()) {
   write-sudo-messages;
+}
+
+if (Get-Command git-wt -ErrorAction SilentlyContinue) { Invoke-Expression (& git-wt config shell init powershell | Out-String) }
+
+##
+if ((Get-Location).Path -eq $env:USERPROFILE) {
+  Set-Location -Path "~/workspaces/"
 }
 
