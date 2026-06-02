@@ -16,27 +16,27 @@
 #
 
 ###
-#	general ignore files
+#   general ignore files
 #
 
 ##
-#	OS created files
+#   OS created files
 #
 .DS_Store
 thumbs.db
 
 ##
-#	backup/swap/temp
+#   backup/swap/temp
 $~*
 ~*
 *~
-*tmp
-*swp
-*lock
+*.tmp
+*.swp
+*.lock
 
 ##
-#	credential files
-#	private key, etc
+#   credential files
+#   private key, etc
 #
 **/.ssh/
 **/.gnupg/*
@@ -44,16 +44,16 @@ $~*
 *credential*
 
 ##
-#	shell & app created files
+#   shell & app created files
 
-#	history & info
+#   history & info
 .*hist*
 .*info*
 
-#	Log Files
+#   Log Files
 *.log
 
-#	ignore programming
+#   ignore programming
 #  patch
 *.diff
 *.patch
