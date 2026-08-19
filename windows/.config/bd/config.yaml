@@ -5,19 +5,16 @@
 
 # Issue prefix for this repository (used by bd init)
 # If not set, bd init will auto-detect from directory name
-# Example: issue-prefix: "myproject" creates issues like "myproject-1", "myproject-2", etc.
+# Example: issue-prefix: "myProject" creates issues like "myProject-1", "myProject-2", etc.
 # issue-prefix: ""
 issue-prefix: "agl"
-
 # Use no-db mode: JSONL-only, no Dolt database
 # When true, bd will use .beads/issues.jsonl as the source of truth
 # no-db: false
 no-db: true
-
 # Disable daemon for RPC communication (forces direct database access)
 # no-daemon: false
 no-daemon: true
-
 # Disable auto-flush of database to JSONL after mutations
 # no-auto-flush: false
 
@@ -27,7 +24,6 @@ no-auto-import: true
 # Enable JSON output by default
 # json: false
 json: true
-
 # Feedback title formatting for mutating commands (create/update/close/dep/edit)
 # 0 = hide titles, N > 0 = truncate to N characters
 # output:
@@ -36,6 +32,9 @@ json: true
 # Default actor for audit trails (overridden by BEADS_ACTOR or --actor)
 # actor: ""
 actor: "atsushifx"
+metrics:
+  disabled: true
+  endpoint: "https://gastownhall-eventsapi.com/mp/collect"
 
 # Export events (audit trail) to .beads/events.jsonl on each flush/sync
 # When enabled, new events are appended incrementally using a high-water mark.
