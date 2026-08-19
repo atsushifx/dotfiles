@@ -48,4 +48,5 @@ $~*
 temp/
 tmp/
 
-**/.claude\settings.local.json
+## Local settings
+**/settings.local.json

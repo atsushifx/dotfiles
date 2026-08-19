@@ -6,6 +6,7 @@
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
+
 ## markdown lint rule configs
 #
 default: true
@@ -22,9 +23,13 @@ no-duplicate-heading:
 line-length:
   line_length: 120
   code_block_line_length: 120
+  tables: false # tables cannot be wrapped; exclude them from the line length check
 
 # list item
 ol-prefix: true
+
+# html
+no-inline-html: false
 
 # styles
 emphasis-style:

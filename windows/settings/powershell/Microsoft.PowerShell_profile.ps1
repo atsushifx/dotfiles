@@ -29,6 +29,7 @@ if (Test-Path "W:") { # ramdisk exist
 
   $env:TEMP="W:\temp"
   $env:TMP="W:\temp"
+  $env:TMPDIR="/w/temp"
 }
 
 
@@ -84,7 +85,8 @@ function private:write-sudo-messages() {
 ## use firewall for npm,pnpm safer
 function Invoke-SfwPnpm() { & sfw pnpm @args }
 Set-Alias pnpm Invoke-SfwPnpm -Description { "safe pnpm" }
-
+function Invoke-RawPnpm() { & "C:/app/develop/volta/home/bin/pnpm.cmd" @args }
+Set-Alias pnpm-lazy Invoke-RawPnpm -Description { "raw pnpm without firewall" }
 
 ## input History Plugin
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin

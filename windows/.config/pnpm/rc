@@ -17,3 +17,6 @@ global-bin-dir=${XDG_DATA_HOME}/pnpm
 # peer devevdancy
 auto-install-peers=true
 strict-peer-dependencies=false
+
+## package store directory
+store-dir=${XDG_DATA_HOME}/pnpm/store

@@ -6,19 +6,20 @@
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
+
 ## Files
 # globs:
 
 ## Ignores
 # ignore gitignore
 gitignore: true
-
 # ignore files globs
 ignores:
+  - "**/__tests__/**" # ignore test fixtures (raw)chatlog data)
   - ".serena/**"
   - ".tools/**"
-# - "temp/**"
-# - "tmp/**"
+  - "temp/**"
+  - "tmp/**"
 
 ## ruleset
 config:
