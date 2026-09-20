@@ -1,32 +1,127 @@
 ##
 ##
-##  @(#) : git global untrack file settings
-#        :   for Window
+##  @(#) : git untrack file settings (allowlist)
+#        :   for Windows XDG_CONFIG_HOME
 ##
 #
-# @version  1.0.0
+# @version  2.0.0
 # @author   Furukawa Atsushi <atsushifx@gmail.com>
-# @update   2023-09-24
+# @update   2026-09-20
 # @license  MIT
 #
 # @desc<<
-# git ignore files about,
-#  Windows XDG_BASE_CONFIG
+# このディレクトリは ~/.config のミラーであり、外部ツールが
+# キャッシュ・状態・認証情報を勝手に書き込む。
+# そのため denylist ではなく allowlist 方式を採る:
+#   既定ですべて無視し、追跡するものだけを明示的に許可する。
 #
+# 許可は「ディレクトリを 1 段ずつ」行う。`!*/` で全ディレクトリを
+# 一括許可しないこと:
+#   - ルート .gitignore のディレクトリ無視 (.serena/ .copilot/ **/temp/ 等)
+#     を打ち消してしまい、ここで二重に書き直す必要が生じる
+#   - 許可していない階層にワイルドカードが届きうる
+#
+# 新しい設定を追加するときは、そのディレクトリとファイルの 2 行を足す。
+# 足し忘れた場合は `git add` が "ignored by .gitignore" と教えてくれる。
 #<<
 
-## Utils
-# git
-jgit/*
-scoop/
-configstore/
+## すべて無視する
+*
 
-## AI Agents
-# claude code
-claude/*
-!claude/*.MD
-!claude/command/*
+
+## 追跡対象
+#   各ディレクトリの .gitignore (このファイル自身を含む)
+#   許可したディレクトリの中にあるものだけが有効になる
+!.gitignore
+
+#   VSCode workspace
+!.vscode/
+!.vscode/cspell.json
+!.vscode/cspell/
+!.vscode/cspell/dicts/
+!.vscode/cspell/dicts/*.dic
+
+#   cspell 辞書
+!vscode/
+!vscode/cspell.config.json
+!vscode/cSpell/
+!vscode/cSpell/dicts/
+!vscode/cSpell/dicts/*.dic
+
+#   shell utils
+!bd/
+!bd/*.yaml
+!glow/
+!glow/*.yml
+!worktrunk/
+!worktrunk/*.toml
+
+#   git / gh
+!git/
+!git/attributes
+!git/config
+!git/ignore
+!gh/
+!gh/config.yml
+
+#   security
+!gnupg/
+!gnupg/*.conf
+!gnupg/*.ps1
+
+#   linters
+!linters/
+!linters/ghalint/
+!linters/ghalint/*.yaml
+!linters/markdownlint/
+!linters/markdownlint/*.yaml
+!linters/textlint/
+!linters/textlint/*.yaml
+!linters/textlint/.textlint/
+!linters/textlint/.textlint/*.yml
+!linters/textlint/.textlint/dicts/
+!linters/textlint/.textlint/dicts/*.yml
+
+#   toolchain
+!mise/
+!mise/*.toml
+!pnpm/
+!pnpm/rc
+
+#   editors
+!emacs/
+!emacs/*.el
+!nvim/
+!nvim/*.vim
+!vimfiles/
+!vimfiles/vimrc
+
+#   languages
+!ocaml/
+!ocaml/*.ml
+!racket/
+!racket/config.rktd
+!racket/racketrc.rktl
+
+#   prose
+!vale/
+!vale/.vale.ini
+!thunderbird/
+!thunderbird/signature/
+!thunderbird/signature/*.sign
+
+#   AI agents
+!claude/
+!claude/*.md
 !claude/settings.json
+!claude/commands/
+!claude/commands/**
 
 
-## Languages
+## 再除外 (保険)
+#   上の `*` で既に無視されるため現状は冗長だが、
+#   将来 `!gh/*.yml` のような広い許可を足したときの漏れを防ぐ
+#   gh の認証トークン
+gh/hosts.yml
+#   ログ
+*.log
