@@ -15,7 +15,7 @@ filters:
 rules:
   preset-ja-technical-writing:
     sentence-length:
-      max: 100
+      max: 120
     max-kanji-continuous-len:
       max: 8
       allow: []

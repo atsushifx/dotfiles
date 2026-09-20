@@ -36,11 +36,13 @@
     default = current
 
 [pull]
-    ff = only
+    rebase = true
 
 [merge]
-    ff = false
     conflictstyle = zdiff3
+
+[rerere]
+    enabled = true
 
 [branch]
     sort = -committerdate
@@ -56,9 +58,9 @@
     ui = auto
 
 [diff]
-    tool = delta
-	# colorMoved = default
-	# algorithm = histogram
+    tool = difftastic
+    # colorMoved = default
+    # algorithm = histogram
 
 [difftool]
     prompt = false
