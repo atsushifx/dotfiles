@@ -36,20 +36,18 @@
     email = atsushifx@gmail.com
     signingkey = 839C0A383AB25F34
 
-[pull]
-    ff = only
-
-[diff]
-    tool = difftastic
-
-[merge]
-    tool = p4merge
-
 [difftool]
     prompt = false
 
+[merge]
+    tool = vscode
+
 [mergetool]
     prompt = false
+
+[mergetool "vscode"]
+    cmd = code --wait --new-window --merge $LOCAL $REMOTE $BASE $MERGED
+
 
 [fetch]
 

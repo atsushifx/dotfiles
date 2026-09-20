@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/suzuki-shunsuke/ghalint/main/json-schema/ghalint.json
+# src: ./configs/ghalint.yaml
+# @(#) : ghalint configuration file
+#
+# Copyright (c) 2025 atsushifx <https://github.com/atsushifx>
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+# Exclude specific policies if needed
+excludes: []
