@@ -22,20 +22,28 @@ thumbs.db
 .cache/
 # **/*cache
 
+# API keys / credentials
+#   NOTE: 拡張子・区切りでアンカーする (旧 `*key` / `api*` は
+#         `apitest/` や `mykey` のような無関係なパスまで巻き込んでいた)
+*.key
+*.pem
+*.p12
+*.pfx
+*apikey*
+*api-key*
+*api_key*
 
 #   backup/swap/temp
 $~*
 ~*
-*~
-*tmp
-*swp
-*lock
+*.tmp
+*.swp
+*.swo
+*.lock
 
 # session files
+*.session
 *session.json
-*session
-**/*session.json
-**/*session
 
 # .env files
 .env*
@@ -61,12 +69,13 @@ $~*
 **/.claude/*
 
 # agents can tracking
-!.claude/agents/
-!.claude/agents/**
-!.claude/rules/
-!.claude/rules/**
-!.claude/commands/
-!.claude/commands/**
+#   NOTE: `**/` を付けないとリポジトリ直下の .claude にしか効かない
+!**/.claude/agents/
+!**/.claude/agents/**
+!**/.claude/rules/
+!**/.claude/rules/**
+!**/.claude/commands/
+!**/.claude/commands/**
 
 # MCP server dependency files
 .cocoindex_code/
