@@ -37,7 +37,6 @@
 
 [pull]
     rebase = true
-    ff = only
 
 [merge]
     conflictstyle = zdiff3
@@ -59,7 +58,7 @@
     ui = auto
 
 [diff]
-    tool = delta
+    tool = difftastic
     # colorMoved = default
     # algorithm = histogram
 
