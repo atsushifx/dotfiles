@@ -15,6 +15,6 @@ self-hosted-runner:
   labels:
     - ubuntu-slim
 
-  # TODO(security):
-  # Replace null with explicit allow-list once variables are stabilized.
-  config-variables: null
+# TODO(security):
+# Replace null with explicit allow-list once variables are stabilized.
+# config-variables: null
