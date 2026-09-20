@@ -36,9 +36,6 @@
     email = atsushifx@gmail.com
     signingkey = 839C0A383AB25F34
 
-[diff]
-    tool = delta
-
 [difftool]
     prompt = false
 
