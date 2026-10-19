@@ -1,29 +1,16 @@
-###
+# src: .gitconfig
+# @(#) : git setting: for Windows
 #
-# @(#) : dotfiles git settings
+# Copyright (c) 2022- atsushifx <https://github.com/atsushifx>
 #
-# @version 1.0.0
-# @author  Furukawa, Atsushi <atsushifx@aglabo.com>
-# @date    2022-07-18
-# @license MIT
-#
-# @desc<<
-#
-# git global settings for Windows
-# Windows/WSL common settings is git/config-common
-#
-#
-# THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
-# THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
-#
-#<<
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
 ##
 ## settings for Windows
 ##
 [core]
-	autocrlf = input
-#	excludesfile = linux/.config/git/ignore
+    autocrlf = input
 
 [init]
-	mainBranch = main-windows
+    mainBranch = main-windows
