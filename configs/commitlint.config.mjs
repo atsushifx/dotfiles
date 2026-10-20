@@ -7,11 +7,11 @@
 // https://opensource.org/licenses/MIT
 
 // commit lint common configs
-module.exports = {
+const BaseConfig = {
   extends: ['@commitlint/config-conventional'],
   parserPreset: {
     parserOpts: {
-      headerPattern: /^(?:(merge) \(#(\d+)\): )?(\w*)(?:\(([^)]*)\))?!?: (.+)$/,
+      headerPattern: /^(?:(merge)\s+\(#(\d+)\):\s+)?(\w*)(?:\(([^)]*)\))?!?: (.+)$/,
       headerCorrespondence: [
         'merge',
         'pr',
@@ -45,3 +45,5 @@ module.exports = {
     'header-max-length': [2, 'always', 76],
   },
 };
+
+export default BaseConfig;
