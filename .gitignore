@@ -137,6 +137,15 @@ thumbs.db
 **/.env*
 !.env.example
 
+#   API keys / credentials
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*apikey*
+**/*api-key*
+**/*api_key*
+
 #   temporary directories
 **/temp
 **/tmp
