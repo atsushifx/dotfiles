@@ -1,2 +1,4 @@
 [tools]
+deno = "latest"
+jactionlint = "latest"
 pnpm = "latest"
