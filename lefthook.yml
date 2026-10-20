@@ -26,11 +26,11 @@ pre-commit:
 prepare-commit-msg:
   commands:
     prepare-message-script:
-      run: bash -c './scripts/prepare-commit-msg.sh --model sonnet --output "{1}"'
+      run: bash -c './scripts/prepare-commit-msg.sh --output "{1}"'
 
 # check commit message as Conventional Commit
 commit-msg:
   parallel: true
   commands:
     commitlint:
-      run: commitlint --config ./configs/commitlint.config.js --edit
+      run: commitlint --config ./configs/commitlint.config.mjs --edit
