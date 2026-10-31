@@ -1,38 +1,18 @@
-##
-##
-##  @(#) : git untrack file settings (allowlist)
-#        :   for Windows XDG_CONFIG_HOME
-##
+# src: .config/.gitignore
+# @(#) : ignore settings for ~/.config
 #
-# @version  2.0.0
-# @author   Furukawa Atsushi <atsushifx@gmail.com>
-# @update   2026-09-20
-# @license  MIT
+# Copyright (c) 2025- atsushifx <http://github.com/atsushifx>
 #
-# @desc<<
-# このディレクトリは ~/.config のミラーであり、外部ツールが
-# キャッシュ・状態・認証情報を勝手に書き込む。
-# そのため denylist ではなく allowlist 方式を採る:
-#   既定ですべて無視し、追跡するものだけを明示的に許可する。
-#
-# 許可は「ディレクトリを 1 段ずつ」行う。`!*/` で全ディレクトリを
-# 一括許可しないこと:
-#   - ルート .gitignore のディレクトリ無視 (.serena/ .copilot/ **/temp/ 等)
-#     を打ち消してしまい、ここで二重に書き直す必要が生じる
-#   - 許可していない階層にワイルドカードが届きうる
-#
-# 新しい設定を追加するときは、そのディレクトリとファイルの 2 行を足す。
-# 足し忘れた場合は `git add` が "ignored by .gitignore" と教えてくれる。
-#<<
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-## すべて無視する
+## default: all files are ignore
 *
 
+## track
+!global-configs/
+!global-configs/**
 
-## 追跡対象
-#   各ディレクトリの .gitignore (このファイル自身を含む)
-#   許可したディレクトリの中にあるものだけが有効になる
-!.gitignore
 
 #   VSCode workspace
 !.vscode/
@@ -69,18 +49,6 @@
 !gnupg/*.conf
 !gnupg/*.ps1
 
-#   linters
-!linters/
-!linters/ghalint/
-!linters/ghalint/*.yaml
-!linters/markdownlint/
-!linters/markdownlint/*.yaml
-!linters/textlint/
-!linters/textlint/*.yaml
-!linters/textlint/.textlint/
-!linters/textlint/.textlint/*.yml
-!linters/textlint/.textlint/dicts/
-!linters/textlint/.textlint/dicts/*.yml
 
 #   toolchain
 !mise/
@@ -118,10 +86,58 @@
 !claude/commands/**
 
 
-## 再除外 (保険)
-#   上の `*` で既に無視されるため現状は冗長だが、
-#   将来 `!gh/*.yml` のような広い許可を足したときの漏れを防ぐ
-#   gh の認証トークン
-gh/hosts.yml
-#   ログ
-*.log
+##  Git
+# allow all gitignore
+!**/.gitignore
+
+# ------------------------------------------------------------ ##
+##  Re-exclude: secrets and generated files                      ##
+##  Must stay last: these rules undo the broad allow rules above ##
+## ------------------------------------------------------------ ##
+
+#   OS specific files
+.DS_Store
+thumbs.db
+
+#   logs, patches
+**/*.log
+**/*.diff
+**/*.patch
+
+#   history, cache
+**/.history/
+**/.cache/
+
+#   backup/swap/temp
+**/$~*
+**/~*
+**/*~
+**/*.tmp
+**/*.swp
+**/*.lock
+
+#   session files
+**/*session.json
+**/*session
+
+#   .env files
+**/.env*
+!.env.example
+
+
+#   API keys / credentials
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*apikey*
+**/*api-key*
+**/*api_key*
+
+#   temporary directories
+**/temp
+**/tmp
+
+#   node
+**/node_modules/
+**/.pnpm-store/
