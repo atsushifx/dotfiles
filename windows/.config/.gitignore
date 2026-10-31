@@ -10,9 +10,8 @@
 *
 
 ## track
-!global-configs/
-!global-configs/**
-
+!/global-configs
+!/global-configs/**
 
 #   VSCode workspace
 !.vscode/
