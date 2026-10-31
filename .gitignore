@@ -31,6 +31,7 @@
 
 
 ## Root configs
+!/.git*
 !**/package.json
 !**/pnpm-lock.yaml
 !**/renovate.json

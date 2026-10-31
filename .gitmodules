@@ -1,0 +1,3 @@
+[submodule "windows/.config/global-configs"]
+	path = windows/.config/global-configs
+	url = https://github.com/aglabo/global-configs.git
