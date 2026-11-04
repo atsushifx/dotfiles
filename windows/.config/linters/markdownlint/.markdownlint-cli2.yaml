@@ -19,6 +19,9 @@ ignores:
   - ".tools/**"
   - "temp/**"
   - "tmp/**"
+  - "aglabo.github.io/**"
+  - ".github/**"
+  - ".vscode/**"
 
 ## ruleset
 config:
