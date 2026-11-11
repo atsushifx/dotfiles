@@ -31,10 +31,13 @@
 [commit]
     gpgsign = true
 
+[tag]
+    gpgsign = true
+
 [user]
     name = Furukawa Atsushi
     email = atsushifx@gmail.com
-    signingkey = 839C0A383AB25F34
+    signingkey = 78B2EE7059CCC643D59E4E43103421ED775C18D3
 
 [difftool]
     prompt = false
@@ -48,16 +51,11 @@
 [mergetool "vscode"]
     cmd = code --wait --new-window --merge $LOCAL $REMOTE $BASE $MERGED
 
-
 [fetch]
 
 [gpg]
     program = "C:/app/develop/utils/GnuPG/bin/gpg.exe"
-
-[credential]
-    helper = store --file ~/.local/share/git/.git-credentials
-    helper = manager
-
+	format = openpgp
 [credential "helperselector"]
     selected = manager
 
