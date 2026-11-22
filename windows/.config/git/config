@@ -52,6 +52,7 @@
     cmd = code --wait --new-window --merge $LOCAL $REMOTE $BASE $MERGED
 
 [fetch]
+	prune = true
 
 [gpg]
     program = "C:/app/develop/utils/GnuPG/bin/gpg.exe"
