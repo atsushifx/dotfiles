@@ -179,6 +179,5 @@ thumbs.db
 ##   Allow ignore
 
 # allow all gitignore
-!**/.git*
 !**/.gitignore
 !**/*ignore
