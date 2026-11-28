@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# src: ./scripts/setup-dev-env.sh
-# @(#) : Install lefthook in local development environment only
+# src: scripts/setup-dev-env.sh
+# @(#) : install local dev tools (lefthook hooks, shellspec, aglabo); skipped in CI
 #
-# Copyright (c) 2026- atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
-#
 
 set -euo pipefail
 
@@ -15,15 +14,31 @@ set -euo pipefail
 # @return 0 If CI environment detected
 # @return 1 If not in CI environment
 is_ci_environment() {
-  [[ -n "${CI:-}" ]] ||               # Generic CI
-    [[ -n "${GITHUB_ACTIONS:-}" ]] || # GitHub Actions
-    [[ -n "${GITLAB_CI:-}" ]] ||      # GitLab CI
-    [[ -n "${CIRCLECI:-}" ]] ||       # CircleCI
-    [[ -n "${JENKINS_HOME:-}" ]] ||   # Jenkins
-    [[ -n "${TRAVIS:-}" ]] ||         # Travis CI
-    [[ -n "${BUILDKITE:-}" ]] ||      # Buildkite
-    [[ -n "${DRONE:-}" ]] ||          # Drone CI
-    [[ -n "${TF_BUILD:-}" ]]          # Azure Pipelines
+  [[ -n ${CI:-}   ]] \
+                     ||
+    # Generic CI
+    [[ -n ${GITHUB_ACTIONS:-}   ]] \
+                                   ||
+    # GitHub Actions
+    [[ -n ${GITLAB_CI:-}   ]] \
+                              ||
+    # GitLab CI
+    [[ -n ${CIRCLECI:-}   ]] \
+                             ||
+    # CircleCI
+    [[ -n ${JENKINS_HOME:-}   ]] \
+                                 ||
+    # Jenkins
+    [[ -n ${TRAVIS:-}   ]] \
+                           ||
+    # Travis CI
+    [[ -n ${BUILDKITE:-}   ]] \
+                              ||
+    # Buildkite
+    [[ -n ${DRONE:-}   ]] \
+                          ||
+    # Drone CI
+    [[ -n ${TF_BUILD:-}   ]]          # Azure Pipelines
 }
 
 ##
@@ -31,7 +46,7 @@ is_ci_environment() {
 # @return 0 If the lefthook command is found
 # @return 1 If the lefthook command is not found
 is_lefthook_available() {
-  command -v lefthook >/dev/null 2>&1
+  command -v lefthook > /dev/null 2>&1
 }
 
 ##
@@ -40,7 +55,7 @@ is_lefthook_available() {
 # @return 0 If the hooks are installed
 # @return 1 If the hooks are not installed
 is_lefthook_installed() {
-  lefthook check-install >/dev/null 2>&1
+  lefthook check-install > /dev/null 2>&1
 }
 
 ##
@@ -97,14 +112,14 @@ setup_shellspec() {
   echo "Installing shellspec to $install_dir..."
 
   # Clone shellspec repository
-  if git clone --depth 1 https://github.com/shellspec/shellspec.git "$install_dir" >/dev/null 2>&1; then
+  if git clone --depth 1 https://github.com/shellspec/shellspec.git "$install_dir" > /dev/null 2>&1; then
     echo "shellspec installed successfully to $install_dir"
     echo "Add to PATH: export PATH=\"\$PWD/$install_dir:\$PATH\""
     return 0
   fi
 
   echo "Error: shellspec installation failed" >&2
-  if [[ -d "$install_dir" ]]; then
+  if [[ -d $install_dir   ]]; then
     echo "Hint: $install_dir already exists but is incomplete. Remove it and retry." >&2
   fi
   return 1
@@ -132,12 +147,12 @@ _clone_agla_tool() {
   local repo="$1"
   local install_dir="$2"
 
-  if git clone --depth 1 "https://github.com/aglabo/${repo}.git" "$install_dir" >/dev/null 2>&1; then
+  if git clone --depth 1 "https://github.com/aglabo/${repo}.git" "$install_dir" > /dev/null 2>&1; then
     return 0
   fi
 
   echo "Error: $repo installation failed" >&2
-  if [[ -d "$install_dir" ]]; then
+  if [[ -d $install_dir   ]]; then
     echo "Hint: $install_dir already exists but is incomplete. Remove it and retry." >&2
   fi
   return 1
@@ -169,7 +184,7 @@ setup_agla_tool() {
   fi
 
   # Install dependencies (tool wrappers require node_modules/.bin)
-  if ! pnpm --dir "$install_dir" install --frozen-lockfile >/dev/null 2>&1; then
+  if ! pnpm --dir "$install_dir" install --frozen-lockfile > /dev/null 2>&1; then
     echo "Error: $repo pnpm install failed" >&2
     echo "Hint: run 'pnpm --dir \"$install_dir\" install --frozen-lockfile' manually." >&2
     return 1
@@ -199,7 +214,7 @@ main() {
 
   # Run every setup step, then report whether any of them failed
   setup_lefthook || status=1
-  # setup_shellspec "$shellspec_dir" || status=1
+  setup_shellspec "$shellspec_dir" || status=1
   setup_agla_tool "agla-dev-tools" || status=1
   setup_agla_tool "agla-doc-tools" || status=1
 
@@ -207,7 +222,7 @@ main() {
 }
 
 # Skip execution when this script is sourced
-if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
+if [[ ${BASH_SOURCE[0]} != "$0"   ]]; then
   return 0
 fi
 

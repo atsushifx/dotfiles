@@ -1,7 +1,7 @@
 # src: lefthook.yml
 # @(#) : lefthook config
 #
-# Copyright (c) 2025- atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
@@ -10,16 +10,11 @@ pre-commit:
   parallel: true
   commands:
     betterleaks:
-      run: betterleaks protect --config ./configs/betterleaks.toml --staged
+      run: bash runners/run-betterleaks.sh --staged
 
     secretlint:
       glob: "**/*"
-      run: >
-        secretlint
-        --secretlintrc ./configs/secretlint.config.yaml
-        --secretlintignore .gitignore
-        --maskSecrets
-        "{staged_files}"
+      run: secretlint {staged_files}
       skip:
         - empty
 
