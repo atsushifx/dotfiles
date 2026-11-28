@@ -61,7 +61,7 @@ is_glob_pattern() {
 #   Files under any node_modules directory are always excluded, with or without .gitignore.
 # @arg $1 string Search root directory
 # @arg $2 string File glob pattern (e.g. "*.spec.sh")
-# @arg $@ Additional filters: slash-containing args are dir_filters, others are str_filters
+# @arg $@ Additional filters, ANDed: * and ? are glob wildcards (* also matches /)
 # @stdout Newline-separated list of matching file paths (./-prefixed, forward slashes); empty output when no files match
 # @exitcode 0 always
 #
@@ -70,18 +70,15 @@ get_filelist() {
   local __pattern="$2"
   shift 2
 
-  # Collect all filters as rg patterns (dir: as-is, str: glob-converted)
+  # Collect all filters as glob-converted rg patterns
+  # (a regex filter without * or ? passes through unchanged)
   local -a __filters=()
   local __f __norm
   for __f in "$@"; do
     __norm=$(normalize_path "$__f")
     # Strip leading ./ so filter matches rg output (hidden paths have no ./ prefix)
     __norm="${__norm#./}"
-    if [[ $__norm == */*   ]]; then
-      __filters+=("$__norm")
-    else
-      __filters+=("$(args_to_filter "$__norm")")
-    fi
+    __filters+=("$(args_to_filter "$__norm")")
   done
 
   # Enumerate files; normalize separators and prepend ./
