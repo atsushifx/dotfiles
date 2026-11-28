@@ -4,3 +4,4 @@ flutter = { version = "latest", checksum_expr = '"sha256:" + filter(fromJSON(bod
 jactionlint = { version = "latest", workflow = "release.yaml" }
 node = "24"
 pnpm = "latest"
+python = "latest"
