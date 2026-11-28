@@ -1,16 +1,19 @@
 # src: .gitignore
-# @(#) : mainly ignored files and directories
+# @(#) : main ignore settings: template
 #
-# Copyright (c) 2022- atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
-# default: ignore all files
+## ------------------------------------------------------------
+##   default: ignore all files
 *
 
+## ---------------------------------------------------------------
+##   General
 
-## General
+## Basic Documents
 # Allow README, LICENSE, CONTRIBUTING
 !**/README*
 !**/LICENSE*
@@ -20,9 +23,6 @@
 !.github/
 !.github/**
 
-# Allow other ignore
-!*ignore
-
 # Allow editorconfig
 !**/.editorconfig
 
@@ -31,7 +31,6 @@
 
 
 ## Root configs
-!/.git*
 !**/package.json
 !**/pnpm-lock.yaml
 !**/renovate.json
@@ -39,6 +38,8 @@
 !**/dprint.jsonc
 !**/.shellspec
 !**/.mcp.json
+!/tsconfig.json
+!/vitest.config.ts
 !**/CHANGELOG.*
 !**/Release-Note.*
 
@@ -63,16 +64,22 @@
 !/scripts/**/*.sh
 !/scripts/**/*.ts
 
+
+# Documents
+!/docs/
+!/docs/**/
+!/docs/**/*.md
+!/docs/**/*.mdx
+
+
 ## AI Agents
 # General
-!**/AGENTS.md
+!**/AGENT.md
 
 # claude code
 !**/CLAUDE*.md
 
 # allowlist details: .claude/.gitignore
-!.claude/
-!**/CLAUDE*.md
 !.claude/
 !.claude/agents/
 !.claude/agents/**
@@ -92,22 +99,29 @@
 !.vscode/cspell*
 !.vscode/cspell*/**
 
+## ----------------------------------------------------------------
+##   Project Specific
 
-##  Git
-# allow all gitignore
-!**/.gitignore
+## source
+!src/
+!src/**/
+!src/**/*.ts
+!shared/
+!shared/**
+!shared/**/*.ts
 
-### Windows Config
-!common/
-!common/**
+## ---------------------------------------------------------------
+##  Project specific
+
 !windows/
-!windows/**
+!windows/**/
 !linux/
-!linux/**
+!linux/**/
 
 
-## Deny rules (keep last)
-# default deny rules
+## ---------------------------------------------------------------
+##  Re-exclude: secrets and generated files
+##  Must stay last: these rules undo the broad allow rules above
 
 #   OS specific files
 .DS_Store
@@ -128,7 +142,7 @@ thumbs.db
 **/*~
 **/*.tmp
 **/*.swp
-**/*.lock
+# **/*.lock # track *.lock
 
 #   session files
 **/*session.json
@@ -137,6 +151,7 @@ thumbs.db
 #   .env files
 **/.env*
 !.env.example
+
 
 #   API keys / credentials
 **/*.key
@@ -155,3 +170,14 @@ thumbs.db
 **/node_modules/
 **/.pnpm-store/
 
+# Beads / Dolt files (added by bd init)
+!beads/
+!beads/**/SKILL.md
+
+
+## ---------------------------------------------------------------
+##   Allow ignore
+
+# allow all gitignore
+!**/.gitignore
+!**/*ignore

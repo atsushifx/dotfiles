@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# src: ./scripts/prepare-commit-msg.sh
-# @(#) : Prepare commit message using Codex CLI
+# src: scripts/prepare-commit-msg.sh
+# @(#) : Prepare commit message using an AI CLI (codex, claude, copilot, or opencode)
 #
-# Copyright (c) 2025- atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
-#
+
 # @file prepare-commit-msg.sh
-# @brief Prepare commit message using AI (Codex, Claude, or similar)
+# @brief Prepare commit message using AI (Codex, Claude, Copilot, or OpenCode)
 # @description
 #   Automatically generates Conventional Commits format messages by analyzing
 #   staged changes and recent commit history using AI.
@@ -31,7 +31,7 @@
 #   - Context-aware message generation
 #   - Dual output modes: stdout or file output
 #   - Skips if existing message detected (hook mode)
-#   - Safe failure: markers not found → error exit
+#   - Safe failure: markers not found -> error exit
 #
 # @example
 #   # Output to stdout (interactive)
@@ -77,11 +77,11 @@ readonly SCRIPT_DIR
 OUTPUT_FILE=""
 
 ##
-# @description AI model name for commit message generation (default: gpt-6-luna)
-DEFAULT_AI_MODEL="gpt-6-luna"
+# @description AI model name for commit message generation
+DEFAULT_AI_MODEL="opus"
 
-###
-# @description AI model name for commit message generation (default: gpt-6-luna)
+##
+# @description AI model name in use; overridden by --model (starts as DEFAULT_AI_MODEL)
 AI_MODEL="${DEFAULT_AI_MODEL}"
 
 ##
@@ -110,7 +110,7 @@ declare -a AI_COMMAND=()
 display_help() {
   local script_name
   script_name=$(basename "$0")
-  cat <<EOF
+  cat << EOF
 Usage: $script_name [OPTIONS]
 
 Generate Conventional Commits format messages by analyzing staged changes
@@ -123,7 +123,8 @@ Arguments:
 Options:
   --output FILE, -o FILE      Write commit message to FILE instead of stdout
   --model MODEL               AI model name (default: gpt-6-luna)
-                              Supported: gpt-*, o1-*, claude-*, haiku, sonnet, opus
+                              Supported: gpt-*, o1-*, claude-*, haiku, sonnet, opus, fable,
+                              copilot/<model>, <provider>/<model> (OpenCode)
   -h, --help                  Show this help message
 
 Examples:
@@ -163,38 +164,38 @@ EOF
 parse_options() {
   while [[ $# -gt 0 ]]; do
     case $1 in
-    --output | -o)
-      if [[ -z "${2:-}" ]]; then
-        echo "Error: --output requires an argument" >&2
+      --output | -o)
+        if [[ -z ${2:-} ]]; then
+          echo "Error: --output requires an argument" >&2
+          exit 1
+        fi
+        OUTPUT_FILE="$2"
+        shift 2
+        ;;
+      --model)
+        if [[ -z ${2:-} ]]; then
+          echo "Error: --model requires an argument" >&2
+          exit 1
+        fi
+        AI_MODEL="$2"
+        shift 2
+        ;;
+      --help | -h)
+        display_help
+        exit 0
+        ;;
+      -*)
+        echo "Error: Unknown option: $1" >&2
         exit 1
-      fi
-      OUTPUT_FILE="$2"
-      shift 2
-      ;;
-    --model)
-      if [[ -z "${2:-}" ]]; then
-        echo "Error: --model requires an argument" >&2
-        exit 1
-      fi
-      AI_MODEL="$2"
-      shift 2
-      ;;
-    --help | -h)
-      display_help
-      exit 0
-      ;;
-    -*)
-      echo "Error: Unknown option: $1" >&2
-      exit 1
-      ;;
-    *)
-      # Git hook interface: $1 = commit message file, $2 = message source, $3 = SHA.
-      # Take the first positional as the output file, drop the remaining metadata.
-      if [[ -z "$OUTPUT_FILE" ]]; then
-        OUTPUT_FILE="$1"
-      fi
-      shift
-      ;;
+        ;;
+      *)
+        # Git hook interface: $1 = commit message file, $2 = message source, $3 = SHA.
+        # Take the first positional as the output file, drop the remaining metadata.
+        if [[ -z $OUTPUT_FILE ]]; then
+          OUTPUT_FILE="$1"
+        fi
+        shift
+        ;;
     esac
   done
 }
@@ -213,7 +214,7 @@ has_existing_message() {
   local file="$1"
 
   # Fail safely if file does not exist
-  if [[ ! -f "$file" ]]; then
+  if [[ ! -f $file   ]]; then
     return 1
   fi
 
@@ -251,8 +252,9 @@ make_context_block() {
 #
 # **Supported Providers:**
 # - OpenAI (gpt-*, o1-*) -> codex exec -s read-only --color never --model <model>
-# - Anthropic (claude-*, haiku, sonnet, opus) -> claude -p --model <model>
-# - OpenCode (org/model) -> opencode run --model <model>
+# - Anthropic (claude-*, haiku, sonnet, opus, fable) -> claude -p --tools Read,Grep,Glob --strict-mcp-config --model <model>
+# - Copilot (copilot/model) -> copilot --model <model>
+# - OpenCode (provider/model) -> opencode run --model <model>
 #
 # **Safety Notes:**
 # - Uses array expansion, NOT eval (shell injection safe)
@@ -272,34 +274,34 @@ get_model_command() {
   local model="${1:-${DEFAULT_AI_MODEL}}"
 
   case "$model" in
-  # OpenAI models
-  gpt-* | o1-*)
-    AI_COMMAND=("codex" "exec" "-s" "read-only" "--color" "never" "--model" "${model}")
-    ;;
+    # OpenAI models
+    gpt-* | o1-*)
+      AI_COMMAND=("codex" "exec" "-s" "read-only" "--color" "never" "--model" "${model}")
+      ;;
 
-  # Anthropic (Claude) models
-  claude-* | haiku | sonnet | opus | fable)
-    # execute claude with no-mcp and read-only tools (mirrors codex -s read-only):
-    # the staged diff is untrusted input, so the generator must not write
-    AI_COMMAND=("claude" "-p" "--tools" "Read,Grep,Glob" "--strict-mcp-config" "--mcp-config" '{"mcpServers":{}}' "--model" "${model}")
-    ;;
+    # Anthropic (Claude) models
+    claude-* | haiku | sonnet | opus | fable)
+      # execute claude with no-mcp and read-only tools (mirrors codex -s read-only):
+      # the staged diff is untrusted input, so the generator must not write
+      AI_COMMAND=("claude" "-p" "--tools" "Read,Grep,Glob" "--strict-mcp-config" "--mcp-config" '{"mcpServers":{}}' "--model" "${model}")
+      ;;
 
-  # Copilot models (copilot/model format)
-  copilot/*)
-    local copilot_model="${model#copilot/}"
-    AI_COMMAND=("copilot" "--model" "${copilot_model}")
-    ;;
+    # Copilot models (copilot/model format)
+    copilot/*)
+      local copilot_model="${model#copilot/}"
+      AI_COMMAND=("copilot" "--model" "${copilot_model}")
+      ;;
 
-  # OpenCode models (provider/model format)
-  */*)
-    AI_COMMAND=("opencode" "run" "--model" "${model}")
-    ;;
+    # OpenCode models (provider/model format)
+    */*)
+      AI_COMMAND=("opencode" "run" "--model" "${model}")
+      ;;
 
-  # Unsupported model
-  *)
-    echo "Error: Unsupported model: ${model}" >&2
-    return 1
-    ;;
+    # Unsupported model
+    *)
+      echo "Error: Unsupported model: ${model}" >&2
+      return 1
+      ;;
   esac
 }
 
@@ -346,7 +348,7 @@ generate_commit_message() {
   local test_message="${1:-}"
 
   # Return test message if provided (for testing purposes)
-  if [[ -n "$test_message" ]]; then
+  if [[ -n $test_message   ]]; then
     echo "${test_message}"
     return 0
   fi
@@ -381,21 +383,21 @@ generate_commit_message() {
   # shellcheck disable=SC2016
   if echo "$after_diff" | grep -qE '^`?=== commit header ===`?'; then
     # shellcheck disable=SC2016
-    extracted_msg=$(echo "$after_diff" |
-      sed -n '/^`\?=== commit header ===`\?/,/^`\?=== commit footer ===`\?/p' |
-      sed '1d;$d')
+    extracted_msg=$(echo "$after_diff" \
+                                       | sed -n '/^`\?=== commit header ===`\?/,/^`\?=== commit footer ===`\?/p' \
+                                                                              | sed '1d;$d')
   fi
 
   # Format 2: If not found, try markdown code blocks (```text, ```yaml, or plain ```)
   # shellcheck disable=SC2016
-  if [[ -z "$extracted_msg" ]] && echo "$after_diff" | grep -qE '^```(text|yaml)?$'; then
-    extracted_msg=$(echo "$after_diff" |
-      sed -nE '/^```(text|yaml)?$/,/^```$/p' |
-      sed '1d;$d')
+  if [[ -z $extracted_msg   ]] && echo "$after_diff" | grep -qE '^```(text|yaml)?$'; then
+    extracted_msg=$(echo "$after_diff" \
+                                       | sed -nE '/^```(text|yaml)?$/,/^```$/p' \
+                                             | sed '1d;$d')
   fi
 
   # If still not found, report error
-  if [[ -z "$extracted_msg" ]]; then
+  if [[ -z $extracted_msg   ]]; then
     echo "Error: commit message not found in AI output" >&2
     echo 'Expected format: either === commit header === markers or ```text code blocks' >&2
     echo "Debug output:" >&2
@@ -419,13 +421,13 @@ generate_commit_message() {
 output_commit_message() {
   local commit_msg="$1"
 
-  if [[ -z "$OUTPUT_FILE" ]]; then
+  if [[ -z $OUTPUT_FILE   ]]; then
     # Output to stdout (interactive mode)
     echo "$commit_msg"
   else
     # Write to file (Git hook mode)
     rm -f "${OUTPUT_FILE}"
-    echo "${commit_msg}" >"${OUTPUT_FILE}"
+    echo "${commit_msg}" > "${OUTPUT_FILE}"
     echo "[OK] Commit message written to $OUTPUT_FILE" >&2
   fi
 }
@@ -434,7 +436,7 @@ output_commit_message() {
 # Main Execution
 # ============================================================================
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [[ ${BASH_SOURCE[0]} == "${0}"   ]]; then
   cd "$REPO_ROOT"
 
   # Parse command-line options
@@ -442,7 +444,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 
   # Check for existing message in Git buffer mode
   # Skip generation if commit message was previously generated
-  if [[ -n "$OUTPUT_FILE" && -f "$OUTPUT_FILE" ]]; then
+  if [[ -n $OUTPUT_FILE && -f $OUTPUT_FILE     ]]; then
     if has_existing_message "$OUTPUT_FILE"; then
       echo "[OK] Detected existing Git-generated commit message. Skipping generation." >&2
       exit 0

@@ -1,10 +1,11 @@
-// src: ./dprint.jsonc
+// src: dprint.jsonc
 // @(#) : dprint configuration for project formatting
 //
 // Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
+
 {
   "$schema": "https://dprint.dev/schemas/v0.json",
   // Global settings
@@ -41,11 +42,11 @@
   ],
   // Plugins
   "plugins": [
-    "npm:@dprint/typescript@0.96.1",
-    "npm:@dprint/json@0.25.2",
-    "npm:@dprint/markdown@0.26.0",
+    "npm:@dprint/typescript@0.101.0",
+    "npm:@dprint/json@0.26.0",
+    "npm:@dprint/markdown@0.29.0",
     "npm:dprint-plugin-yaml@0.6.0",
-    "npm:@dprint/toml@0.9.0",
+    "npm:@dprint/toml@0.10.0",
   ],
   // Language-specific settings
   "typescript": {
